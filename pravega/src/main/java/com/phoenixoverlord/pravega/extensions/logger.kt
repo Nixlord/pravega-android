@@ -15,7 +15,7 @@ fun logError(tag : String = "GlobalLog", exception : Throwable) {
     val text = exception.message ?: "NullErrorMessage"
 
     Log.e(tag, text)
-    Crashlytics.log(Log.ERROR, "F:$tag", text)
+//    Crashlytics.log(Log.ERROR, "F:$tag", text)
 }
 
 
@@ -30,6 +30,6 @@ fun logDebug(tag : String = "GlobalLog", message: String?) {
     val text = message ?: "NullMessage"
 
     Log.d(tag, text)
-    Crashlytics.log(Log.DEBUG, "F:$tag", text)
+//    Crashlytics.log(Log.DEBUG, "F:$tag", text)
 }
 

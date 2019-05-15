@@ -1,19 +1,16 @@
 package com.phoenixoverlord.pravega.extensions
 
 import android.net.Uri
-import com.google.android.gms.tasks.Tasks
-import com.phoenixoverlord.eventapp.extensions.Firebase.storage
-import com.phoenixoverlord.eventapp.model.Post
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
+import io.reactivex.Observable
 import java.io.File
-import java.io.FileInputStream
 import java.lang.Error
+import java.util.*
 
 
 object Firebase {
@@ -39,6 +36,7 @@ fun StorageReference.pushImage(compressedImage : File, imageName: String) : Uplo
 }
 
 
+/*
 fun FirebaseFirestore.savePost(
     post: Post, image: File,
     onSuccess : () -> Unit = { logDebug("savePost", "default") }
@@ -57,6 +55,7 @@ fun FirebaseFirestore.savePost(
 
     return storeImageTask
 }
+*/
 
 fun<T> DocumentReference.addSnapshotListener(
     valueType: Class<T>,

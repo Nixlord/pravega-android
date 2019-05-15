@@ -1,7 +1,7 @@
 @file:JvmName("Utils")
 package com.phoenixoverlord.pravega.utils
 
-import com.phoenixoverlord.eventapp.extensions.Firebase.auth
+import com.phoenixoverlord.pravega.extensions.Firebase.auth
 import java.text.SimpleDateFormat
 import java.util.*
 

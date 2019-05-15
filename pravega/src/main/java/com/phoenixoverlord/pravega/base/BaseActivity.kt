@@ -66,8 +66,9 @@ abstract class BaseActivity : AppCompatActivity() {
         Icepick.saveInstanceState(this, outState)
     }
 
-    override fun onStop() {
-        super.onStop()
-//        compressionModule.dispose()
+    override fun onDestroy() {
+        compositeDisposable.dispose()
+        super.onDestroy()
     }
+
 }

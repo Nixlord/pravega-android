@@ -2,9 +2,9 @@ package com.phoenixoverlord.pravega.extensions
 
 import android.net.Uri
 import android.os.Handler
-import android.support.annotation.DrawableRes
-import android.support.v4.content.FileProvider
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
+import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException

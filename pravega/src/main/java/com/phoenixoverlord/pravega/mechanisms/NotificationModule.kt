@@ -7,8 +7,11 @@ import android.content.Context
 import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Build
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.UploadTask
+import com.phoenixoverlord.pravega.base.BaseActivity
 
 import com.phoenixoverlord.pravega.utils.LoopingAtomicInteger
 
@@ -44,7 +47,8 @@ class NotificationModule(context: Context) : ContextWrapper(context) {
 
     private fun createHandlerIntent(): PendingIntent? {
 
-        val intent = Intent(this, MainActivity::class.java).apply {
+        // Todo This is wrong. Correct this.
+        val intent = Intent(this, BaseActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 

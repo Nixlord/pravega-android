@@ -5,6 +5,9 @@ import android.graphics.Color
 import android.graphics.PorterDuff
 import android.util.AttributeSet
 import android.widget.Checkable
+import androidx.core.content.ContextCompat
+import com.google.android.material.button.MaterialButton
+import com.phoenixoverlord.pravega.R
 
 class LikeButton(context : Context, attributes: AttributeSet) : MaterialButton(context, attributes), Checkable {
 
