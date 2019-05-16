@@ -1,6 +1,10 @@
 # Pravega
 Pravega is high speed in Sanskrit and is a Kotlin library intended to help you develop Android Applications easier and faster. 
 
+## How to use
+[![](https://jitpack.io/v/Nixlord/Pravega.svg)](https://jitpack.io/#Nixlord/Pravega)
+<br/>
+
 ## Design Considerations
 Certain patterns like reactive and functional programming are chosen over others as a matter of preference and my understanding that they work better. I'm not claiming superiority over other approaches.
 <br/>
