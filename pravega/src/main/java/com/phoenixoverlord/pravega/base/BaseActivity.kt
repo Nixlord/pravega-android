@@ -9,7 +9,6 @@ import com.phoenixoverlord.pravega.mechanisms.CameraModule
 import com.phoenixoverlord.pravega.mechanisms.NotificationModule
 import com.phoenixoverlord.pravega.mechanisms.PermissionsModule
 import com.phoenixoverlord.pravega.utils.LoopingAtomicInteger
-import icepick.Icepick
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -53,17 +52,6 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         permissionsModule.onRequestPermissionsResult(requestCode, permissions, grantResults)
-    }
-
-    /** Stateful Portion */
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Icepick.restoreInstanceState(this, savedInstanceState)
-    }
-
-    override fun onSaveInstanceState(outState: Bundle?, outPersistentState: PersistableBundle?) {
-        super.onSaveInstanceState(outState, outPersistentState)
-        Icepick.saveInstanceState(this, outState)
     }
 
     override fun onDestroy() {
