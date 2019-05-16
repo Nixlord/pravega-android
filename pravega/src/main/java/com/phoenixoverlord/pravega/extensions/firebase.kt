@@ -2,6 +2,8 @@ package com.phoenixoverlord.pravega.extensions
 
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
@@ -20,6 +22,9 @@ object Firebase {
      */
     val storage : StorageReference
         get() = FirebaseStorage.getInstance().reference
+
+    val realtime : DatabaseReference
+        get() = FirebaseDatabase.getInstance().reference
 
     val firestore : FirebaseFirestore
         get() = FirebaseFirestore.getInstance()

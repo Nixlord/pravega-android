@@ -18,7 +18,6 @@ fun AppCompatActivity.getSimpleName() : String {
     return this.javaClass.simpleName
 }
 
-
 fun AppCompatActivity.getTag() : String {
     val length = this.getSimpleName().length
     val till = Math.min(length - 1, 20)
