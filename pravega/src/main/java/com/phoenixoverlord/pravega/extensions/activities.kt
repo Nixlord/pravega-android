@@ -6,13 +6,7 @@ import android.content.pm.PackageManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.android.material.snackbar.Snackbar
 import es.dmoral.toasty.Toasty
-
-fun AppCompatActivity.snackbar(message : String) {
-    // android.R.id.content Points to the layout file
-    Snackbar.make(this.findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show()
-}
 
 fun AppCompatActivity.getSimpleName() : String {
     return this.javaClass.simpleName
