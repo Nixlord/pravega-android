@@ -5,6 +5,11 @@ Pravega is high speed in Sanskrit and is a Kotlin library intended to help you d
 [![](https://jitpack.io/v/Nixlord/Pravega-android.svg)](https://jitpack.io/#Nixlord/Pravega-android)
 <br/>
 
+ProgressTracker: 
+<br />
+https://docs.google.com/spreadsheets/d/1OCTxre3Bk8UDayWnZ_kddJ-H4N8DY67Y65W94eQXAw8/edit?usp=sharing
+
+
 ## Design Considerations
 Certain patterns like reactive and functional programming are chosen over others as a matter of preference and my understanding that they work better. I'm not claiming superiority over other approaches.
 <br/>
