@@ -6,7 +6,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.phoenixoverlord.pravega.extensions.Firebase
+import com.phoenixoverlord.pravega.extensions.logDebug
+import com.phoenixoverlord.pravega.toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.*
 import kotlinx.android.synthetic.main.list_item.view.*
@@ -56,6 +59,23 @@ class MainActivity : AppCompatActivity() {
         recyclerview.removeModel("Diksha")
         recyclerview.addModel("Parichay")
 
+        // Rx should solve callback hell. This is PoC for remoteConfig
+
+        val remoteConfig = FirebaseRemoteConfig.getInstance()
+        remoteConfig
+            .setDefaultsAsync(R.xml.remote_config_default)
+            .addOnSuccessListener {
+                remoteConfig.fetch(1)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            remoteConfig.activate()
+                            val predictor = remoteConfig.getString("predictor")
+                            val backend = remoteConfig.getString("backend")
+                            toast("Success $predictor and $backend ")
+                            logDebug("Success $predictor and $backend ")
+                        }
+                    }
+            }
 
     }
 }
