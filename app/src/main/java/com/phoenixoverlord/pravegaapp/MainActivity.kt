@@ -11,6 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import kotlinx.android.synthetic.main.list_item.view.button
+import java.util.*
 import java.util.function.Consumer
 
 //import com.phoenixoverlord.pravega.toast
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         recyclerview.addModel("Soubhagya")
         recyclerview.removeModel("Diksha")
         recyclerview.addModel("Parichay")
+
 
     }
 }

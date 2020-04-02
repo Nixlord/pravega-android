@@ -11,6 +11,8 @@ import com.phoenixoverlord.pravega.mechanisms.PermissionsModule
 import com.phoenixoverlord.pravega.utils.LoopingAtomicInteger
 import io.reactivex.disposables.CompositeDisposable
 
+
+// Rewrite this Activity to have better function injection. Maybe a map(activityCallback -> customHook)
 abstract class BaseActivity : AppCompatActivity() {
 
     protected val compositeDisposable = CompositeDisposable()
@@ -19,10 +21,11 @@ abstract class BaseActivity : AppCompatActivity() {
     // Improve notificationModule later, implement lifecycle
     val notificationModule : NotificationModule by lazy { NotificationModule(this) }
     private val permissionsModule = PermissionsModule()
-    private val camera = CameraModule()
 
-    /** CameraModule */
-    fun takePhoto(prompt : String) = camera.takePhoto(this, prompt)
+//    Camera API has changed. Need to rewrite
+//    private val camera = CameraModule()
+//    /** CameraModule */
+//    fun takePhoto(prompt : String) = camera.takePhoto(this, prompt)
 
     /** ActivityResultModule */
     fun startActivityGetResult(
@@ -46,7 +49,8 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         activityResultHandler.onActivityResult(requestCode, resultCode, data)
-        camera.internalOnActivityResult(this, requestCode, resultCode, data)
+        //    Camera API has changed. Need to rewrite
+        //    camera.internalOnActivityResult(this, requestCode, resultCode, data)
     }
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {

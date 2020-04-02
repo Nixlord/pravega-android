@@ -27,7 +27,7 @@ android {
 
 }
 
-// Need to have common dependency file
+
 // Why is app module this not taking transitive dependencies?
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -38,34 +38,64 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
+    // TRANSITIVE NOT WORKING TODO
     // Firebase
-    implementation 'com.google.firebase:firebase-core:17.2.3'
-    implementation "com.firebaseui:firebase-ui-database:$firebase_ui_version"
-    implementation "com.firebaseui:firebase-ui-firestore:$firebase_ui_version"
-    implementation "com.firebaseui:firebase-ui-storage:$firebase_ui_version"
-    implementation "com.firebaseui:firebase-ui-auth:$firebase_ui_version"
-
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    api('com.google.firebase:firebase-core:17.2.3'){
+        transitive = true
+    }
+    api("com.firebaseui:firebase-ui-database:$firebase_ui_version") {
+        transitive = true
+    }
+    api("com.firebaseui:firebase-ui-firestore:$firebase_ui_version") {
+        transitive = true
+    }
+    api("com.firebaseui:firebase-ui-storage:$firebase_ui_version") {
+        transitive = true
+    }
+    api("com.firebaseui:firebase-ui-auth:$firebase_ui_version") {
+        transitive = true
+    }
 
     // Toasty library
-    implementation 'com.github.GrenderG:Toasty:1.4.2'
+    api('com.github.GrenderG:Toasty:1.4.2') {
+        transitive = true
+    }
 
     // Reactive Extensions
-    implementation "io.reactivex.rxjava2:rxjava:2.2.19"
-    implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    api("io.reactivex.rxjava2:rxjava:2.2.19") {
+        transitive = true
+    }
+    api('io.reactivex.rxjava2:rxkotlin:2.3.0') {
+        transitive = true
+    }
+    api('io.reactivex.rxjava2:rxandroid:2.1.1') {
+        transitive = true
+    }
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
+    api('com.squareup.retrofit2:retrofit:2.8.1') {
+        transitive = true
+    }
+    api('com.squareup.retrofit2:adapter-rxjava2:2.8.1') {
+        transitive = true
+    }
 
     // Imaging
-    implementation 'com.github.jkwiecien:EasyImage:3.0.3'
-    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+    api('com.github.jkwiecien:EasyImage:3.0.3') {
+        transitive = true
+    }
+    api('com.github.chrisbanes:PhotoView:2.3.0') {
+        transitive = true
+    }
+    api('com.github.bumptech.glide:glide:4.9.0') {
+        transitive = true
+    }
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
 
     // Files
-    implementation 'id.zelory:compressor:3.0.0'
+    api('id.zelory:compressor:3.0.0') {
+        transitive = true
+    }
 }
 
 repositories {
