@@ -37,19 +37,12 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
-    implementation 'com.google.firebase:firebase-core:17.0.1'
-
-    // FirebaseUI for Firebase Realtime Database
-    implementation 'com.firebaseui:firebase-ui-database:5.0.0'
-
-    // FirebaseUI for Cloud Firestore
-    implementation 'com.firebaseui:firebase-ui-firestore:5.0.0'
-
-    // FirebaseUI for Firebase Auth
-    implementation 'com.firebaseui:firebase-ui-auth:5.0.0'
-
-    // FirebaseUI for Cloud Storage
-    implementation 'com.firebaseui:firebase-ui-storage:5.0.0'
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:17.2.3'
+    implementation "com.firebaseui:firebase-ui-database:$firebase_ui_version"
+    implementation "com.firebaseui:firebase-ui-firestore:$firebase_ui_version"
+    implementation "com.firebaseui:firebase-ui-storage:$firebase_ui_version"
+    implementation "com.firebaseui:firebase-ui-auth:$firebase_ui_version"
 
     implementation 'com.github.bumptech.glide:glide:4.9.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
@@ -65,10 +58,8 @@ dependencies {
     // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.5.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
 
     implementation 'com.github.jkwiecien:EasyImage:2.1.1'
-
     implementation 'id.zelory:compressor:2.1.0'
 
 }
