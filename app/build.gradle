@@ -32,6 +32,35 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
-   // implementation 'com.github.Nixlord:Pravega:master-SNAPSHOT'
+    implementation 'com.github.Nixlord:pravega-android:0.1.9'
     implementation 'androidx.recyclerview:recyclerview:1.2.0-alpha02'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-core:17.2.3'
+    implementation "com.firebaseui:firebase-ui-database:$firebase_ui_version"
+    implementation "com.firebaseui:firebase-ui-firestore:$firebase_ui_version"
+    implementation "com.firebaseui:firebase-ui-storage:$firebase_ui_version"
+    implementation "com.firebaseui:firebase-ui-auth:$firebase_ui_version"
+
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    // Toasty library
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+
+    // Reactive Extensions
+    implementation "io.reactivex.rxjava2:rxjava:2.2.19"
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    // Retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
+
+    // Imaging
+    implementation 'com.github.jkwiecien:EasyImage:3.0.3'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
+
+    // Files
+    implementation 'id.zelory:compressor:3.0.0'
 }

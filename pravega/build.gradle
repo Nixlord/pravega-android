@@ -27,6 +27,8 @@ android {
 
 }
 
+// Need to have common dependency file
+// Why is app module this not taking transitive dependencies?
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -35,7 +37,6 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-
 
     // Firebase
     implementation 'com.google.firebase:firebase-core:17.2.3'
@@ -51,18 +52,22 @@ dependencies {
     implementation 'com.github.GrenderG:Toasty:1.4.2'
 
     // Reactive Extensions
-    implementation "io.reactivex.rxjava2:rxjava:2.2.8"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.19"
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 
     // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.8.1'
 
-    implementation 'com.github.jkwiecien:EasyImage:2.1.1'
-    implementation 'id.zelory:compressor:2.1.0'
+    // Imaging
+    implementation 'com.github.jkwiecien:EasyImage:3.0.3'
+    implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
+    // Files
+    implementation 'id.zelory:compressor:3.0.0'
 }
+
 repositories {
     mavenCentral()
 }
