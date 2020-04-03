@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.phoenixoverlord.pravega.mechanisms.ActivityResultHandler
-import com.phoenixoverlord.pravega.mechanisms.CameraModule
 import com.phoenixoverlord.pravega.mechanisms.NotificationModule
 import com.phoenixoverlord.pravega.mechanisms.PermissionsModule
 import com.phoenixoverlord.pravega.utils.LoopingAtomicInteger
