@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
+import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import io.reactivex.Observable
 import java.io.File
 import java.lang.Error
@@ -34,12 +35,11 @@ object Firebase {
 }
 
 
+
 fun StorageReference.pushImage(compressedImage : File, imageName: String) : UploadTask {
     val imageStorage = this.child("images").child(imageName)
-
     return imageStorage.putFile(Uri.fromFile(compressedImage))
 }
-
 
 /*
 fun FirebaseFirestore.savePost(

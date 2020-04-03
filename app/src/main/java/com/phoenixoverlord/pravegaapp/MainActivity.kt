@@ -61,21 +61,6 @@ class MainActivity : AppCompatActivity() {
 
         // Rx should solve callback hell. This is PoC for remoteConfig
 
-        val remoteConfig = FirebaseRemoteConfig.getInstance()
-        remoteConfig
-            .setDefaultsAsync(R.xml.remote_config_default)
-            .addOnSuccessListener {
-                remoteConfig.fetch(1)
-                    .addOnCompleteListener(this) { task ->
-                        if (task.isSuccessful) {
-                            remoteConfig.activate()
-                            val predictor = remoteConfig.getString("predictor")
-                            val backend = remoteConfig.getString("backend")
-                            toast("Success $predictor and $backend ")
-                            logDebug("Success $predictor and $backend ")
-                        }
-                    }
-            }
 
     }
 }
