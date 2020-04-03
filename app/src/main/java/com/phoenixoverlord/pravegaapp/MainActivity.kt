@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.Firebase
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.toast
@@ -28,13 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
 
-//        recyclerview.apply {
-//            recyclerViewModule.create<String>(view -> {
-//            view.appl
-//        })
-//        }
-//
-//
         val list = arrayListOf("Shibasis", "Diksha")
 
         val binder: ((View, String) -> Unit) = { view, item ->
@@ -59,8 +53,9 @@ class MainActivity : AppCompatActivity() {
         recyclerview.removeModel("Diksha")
         recyclerview.addModel("Parichay")
 
-        // Rx should solve callback hell. This is PoC for remoteConfig
-
+        remoteConfig().thenApply {
+            it.entries.forEach { logDebug("${it.key}:${it.value}") }
+        }
 
     }
 }

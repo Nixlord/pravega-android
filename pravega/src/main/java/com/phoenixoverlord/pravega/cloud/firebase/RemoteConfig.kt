@@ -17,7 +17,7 @@ val defaultValues = mapOf(
 fun getFrom(remoteConfig: FirebaseRemoteConfig, keys: List<String>) = keys.associateWith { remoteConfig.getString(it) }
 
 // Decrease API version after thinking. CompletableFuture requires Android >= 7
-public fun remoteConfig(): CompletableFuture<Map<String, String>> {
+fun remoteConfig(): CompletableFuture<Map<String, String>> {
     val future = CompletableFuture<Map<String, String>>()
 
     val remoteConfig = FirebaseRemoteConfig.getInstance()
