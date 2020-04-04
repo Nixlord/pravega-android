@@ -38,7 +38,6 @@ jobs:
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
-          body: |
-            Commit Message: echo $commitmsg ${{ commitmsg }}
+          body: Commit Message echo ${{ commitmsg }}
           draft: false
           prerelease: true
