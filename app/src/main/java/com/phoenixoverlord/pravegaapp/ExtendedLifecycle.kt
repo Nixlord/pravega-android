@@ -6,10 +6,10 @@ import androidx.lifecycle.LifecycleOwner
 
 interface Component: DefaultLifecycleObserver {
     fun onActivityResult(owner: LifecycleOwner, requestCode: Int, resultCode: Int, data: Intent?) {}
-    fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {}
+    fun onRequestPermissionsResult(owner: LifecycleOwner, requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {}
 }
 
-class test: Component {
+object CameraModule: Component {
     override fun onActivityResult(
         owner: LifecycleOwner,
         requestCode: Int,
@@ -20,11 +20,12 @@ class test: Component {
     }
 
     override fun onRequestPermissionsResult(
+        owner: LifecycleOwner,
         requestCode: Int,
         permissions: Array<out String>,
         grantResults: IntArray
     ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        super.onRequestPermissionsResult(owner, requestCode, permissions, grantResults)
     }
 
     override fun onCreate(owner: LifecycleOwner) {
