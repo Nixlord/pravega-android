@@ -5,6 +5,7 @@ buildscript {
     ext.firebase_ui_version = '6.2.1'
     ext.lifecycle_version = "2.2.0"
     ext.arch_version = "2.1.0"
+    ext.work_version = "2.3.4"
     repositories {
         google()
         jcenter()
