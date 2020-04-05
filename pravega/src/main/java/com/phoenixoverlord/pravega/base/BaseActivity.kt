@@ -8,7 +8,9 @@ import com.phoenixoverlord.pravega.mechanisms.ActivityResultHandler
 import com.phoenixoverlord.pravega.mechanisms.NotificationModule
 import com.phoenixoverlord.pravega.mechanisms.PermissionsModule
 import com.phoenixoverlord.pravega.utils.LoopingAtomicInteger
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 
 
 // Rewrite this Activity to have better function injection. Maybe a map(activityCallback -> customHook)
@@ -20,6 +22,10 @@ abstract class BaseActivity : AppCompatActivity() {
     // Improve notificationModule later, implement lifecycle
     val notificationModule : NotificationModule by lazy { NotificationModule(this) }
     private val permissionsModule = PermissionsModule()
+
+    fun rx(disposableFn: (() -> Disposable)) {
+        compositeDisposable.add(disposableFn())
+    }
 
 //    Camera API has changed. Need to rewrite
 //    private val camera = CameraModule()
