@@ -38,18 +38,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-      - name: Get Commit Message
-        run: echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@latest
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_name: Release ${{ github.ref }}
-          body: Commit Message to be added here
-          draft: false
-          prerelease: true
+#      - name: Get Commit Message
+#        run: echo ::set-env name=commitmsg::$(git log --format=%B -n 1 ${{ github.event.after }})
+#      - name: Create Release
+#        id: create_release
+#        uses: actions/create-release@latest
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        with:
+#          release_name: Release ${{ github.ref }}
+#          body: Commit Message to be added here
+#          draft: false
+#          prerelease: true
       - name: Build debug APK
         run: bash ./gradlew assembleDebug --stacktrace
       - name: Upload APK
