@@ -4,8 +4,14 @@ import android.content.Intent
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 
+/**
+ * Needs a mechanism to inject activity
+ * Needs common functions like activityResults and permissionResults handled by common utils
+ */
 interface Component: DefaultLifecycleObserver {
+    // Remove dependency on requestCode
     fun onActivityResult(owner: LifecycleOwner, requestCode: Int, resultCode: Int, data: Intent?) {}
+    // Same
     fun onRequestPermissionsResult(owner: LifecycleOwner, requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {}
 }
 
