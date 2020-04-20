@@ -13,7 +13,7 @@ open class PravegaActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState, persistentState)
     }
 
-    fun inject(components: ArrayList<Component>) {
+    fun inject(vararg components: Component) {
         components.forEach { inject(it) }
     }
 
@@ -44,6 +44,6 @@ open class PravegaActivity: AppCompatActivity() {
 class Test: PravegaActivity() {
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        inject(arrayListOf(CameraModule()))
+        inject(CameraModule())
     }
 }
