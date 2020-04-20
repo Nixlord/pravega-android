@@ -1,4 +1,4 @@
-package com.phoenixoverlord.pravegaapp
+package com.phoenixoverlord.pravega.base
 
 import android.content.Intent
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -9,6 +9,7 @@ import androidx.lifecycle.LifecycleOwner
  * Needs common functions like activityResults and permissionResults handled by common utils
  */
 
+// Common functions here.
 interface Component: DefaultLifecycleObserver {}
 
 // Use subclasses for each type (activityResult, permissionResult) Common types in Component.
@@ -31,7 +32,9 @@ fun execute(component: Component) {
     }
 }
 
-class CameraModule: Component, UsesPermission, UsesActivityResult {
+class CameraModule: Component,
+    UsesPermission,
+    UsesActivityResult {
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
     }
