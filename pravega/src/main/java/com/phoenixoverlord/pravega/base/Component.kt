@@ -3,6 +3,7 @@ package com.phoenixoverlord.pravega.base
 import android.content.Intent
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import java.io.File
 
 /**
  * Needs a mechanism to inject activity
@@ -10,7 +11,7 @@ import androidx.lifecycle.LifecycleOwner
  */
 
 // Common functions here.
-interface Component: DefaultLifecycleObserver {}
+abstract class Component: DefaultLifecycleObserver {}
 
 interface UsesActivityResult {
     fun onActivityResult(owner: LifecycleOwner, success: Boolean, data: Intent?)
@@ -20,9 +21,13 @@ interface UsesPermission {
     fun onPermissionResult(owner: LifecycleOwner, success: Boolean)
 }
 
-class CameraModule: Component,
+class CameraModule: Component(),
     UsesPermission,
     UsesActivityResult {
+    fun takePhoto(onSuccess: (File) -> Unit) {
+        onSuccess(File("RandomPath"))
+    }
+
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
     }

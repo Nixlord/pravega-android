@@ -3,11 +3,13 @@ package com.phoenixoverlord.pravega.base
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 open class PravegaActivity: AppCompatActivity() {
-    val activityResultComponents = arrayListOf<UsesActivityResult>()
-    val permissionResultComponents = arrayListOf<UsesPermission>()
+    private val activityResultComponents = arrayListOf<UsesActivityResult>()
+    private val permissionResultComponents = arrayListOf<UsesPermission>()
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
@@ -42,8 +44,17 @@ open class PravegaActivity: AppCompatActivity() {
 }
 
 class Test: PravegaActivity() {
+    private val cameraModule = CameraModule()
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
-        inject(CameraModule())
+        inject(cameraModule)
+
+        val textView = TextView(this)
+        textView.setOnClickListener {
+            cameraModule.takePhoto {
+                Log.d("FILE Recieved", it.name)
+            }
+        }
     }
+
 }
