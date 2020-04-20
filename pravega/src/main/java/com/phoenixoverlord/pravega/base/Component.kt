@@ -3,7 +3,9 @@ package com.phoenixoverlord.pravega.base
 import android.content.Intent
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import com.google.android.gms.tasks.OnFailureListener
 import java.io.File
+import java.util.concurrent.ConcurrentLinkedQueue
 
 /**
  * Needs a mechanism to inject activity
@@ -21,11 +23,29 @@ interface UsesPermission {
     fun onPermissionResult(owner: LifecycleOwner, success: Boolean)
 }
 
+// Need proper mechanism for reentrant calls
 class CameraModule: Component(),
     UsesPermission,
     UsesActivityResult {
-    fun takePhoto(onSuccess: (File) -> Unit) {
-        onSuccess(File("RandomPath"))
+
+    class Result(
+        var onSuccess: (File) -> Unit = {},
+        var onFailure: (Error) -> Unit = {}
+    ) {
+        fun addOnSuccessListener(onSuccess: (File) -> Unit) {
+            this.onSuccess = onSuccess
+        }
+
+        fun addonFailureListener(onFailure: (Error) -> Unit) {
+            this.onFailure = onFailure
+        }
+    }
+    val taskQueue = ConcurrentLinkedQueue<Result>()
+
+    fun takePhoto(params: String): Result {
+        val result = Result()
+        taskQueue.add(result)
+        return result
     }
 
     override fun onCreate(owner: LifecycleOwner) {
