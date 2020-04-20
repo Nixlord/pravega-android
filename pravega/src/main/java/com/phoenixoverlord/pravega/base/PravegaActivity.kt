@@ -6,8 +6,6 @@ import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 
 class PravegaActivity: AppCompatActivity() {
-
-    val components = arrayListOf<Component>()
     val activityResultComponents = arrayListOf<UsesActivityResult>()
     val permissionResultComponents = arrayListOf<UsesPermission>()
 
@@ -20,8 +18,7 @@ class PravegaActivity: AppCompatActivity() {
     }
 
     fun inject(component: Component) {
-        this.components.add(component)
-
+        lifecycle.addObserver(component)
         if (component is UsesActivityResult){
             activityResultComponents.add(component)
         }
