@@ -9,42 +9,29 @@ import androidx.lifecycle.LifecycleOwner
  * Needs common functions like activityResults and permissionResults handled by common utils
  */
 
+interface Component: DefaultLifecycleObserver {}
+
 // Use subclasses for each type (activityResult, permissionResult) Common types in Component.
-interface ActivityResult {
+interface UsesActivityResult {
     fun onActivityResult(owner: LifecycleOwner, success: Boolean, data: Intent?)
 }
 
-interface PermissionResult {
+interface UsesPermission {
     fun onPermissionResult(owner: LifecycleOwner, success: Boolean)
 }
 
 
-abstract class Component: DefaultLifecycleObserver {
-    // Remove dependency on requestCode
-    open fun onActivityResult(owner: LifecycleOwner, requestCode: Int, resultCode: Int, data: Intent?) {}
-    // Same
-    open fun onRequestPermissionsResult(owner: LifecycleOwner, requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {}
+
+fun execute(component: Component) {
+    if (component is UsesActivityResult) {
+//        activityResultModule.handle(component);
+    }
+    if (component is UsesPermission) {
+//      permissionModule.handle(component);
+    }
 }
 
-object CameraModule: Component() {
-    override fun onActivityResult(
-        owner: LifecycleOwner,
-        requestCode: Int,
-        resultCode: Int,
-        data: Intent?
-    ) {
-        super.onActivityResult(owner, requestCode, resultCode, data)
-    }
-
-    override fun onRequestPermissionsResult(
-        owner: LifecycleOwner,
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(owner, requestCode, permissions, grantResults)
-    }
-
+class CameraModule: Component, UsesPermission, UsesActivityResult {
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
     }
@@ -67,5 +54,13 @@ object CameraModule: Component() {
 
     override fun onDestroy(owner: LifecycleOwner) {
         super.onDestroy(owner)
+    }
+
+    override fun onActivityResult(owner: LifecycleOwner, success: Boolean, data: Intent?) {
+        TODO("Not yet implemented")
+    }
+
+    override fun onPermissionResult(owner: LifecycleOwner, success: Boolean) {
+        TODO("Not yet implemented")
     }
 }
