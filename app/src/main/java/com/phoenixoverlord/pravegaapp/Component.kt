@@ -8,14 +8,25 @@ import androidx.lifecycle.LifecycleOwner
  * Needs a mechanism to inject activity
  * Needs common functions like activityResults and permissionResults handled by common utils
  */
-interface Component: DefaultLifecycleObserver {
-    // Remove dependency on requestCode
-    fun onActivityResult(owner: LifecycleOwner, requestCode: Int, resultCode: Int, data: Intent?) {}
-    // Same
-    fun onRequestPermissionsResult(owner: LifecycleOwner, requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {}
+
+// Use subclasses for each type (activityResult, permissionResult) Common types in Component.
+interface ActivityResult {
+    fun onActivityResult(owner: LifecycleOwner, success: Boolean, data: Intent?)
 }
 
-object CameraModule: Component {
+interface PermissionResult {
+    fun onPermissionResult(owner: LifecycleOwner, success: Boolean)
+}
+
+
+abstract class Component: DefaultLifecycleObserver {
+    // Remove dependency on requestCode
+    open fun onActivityResult(owner: LifecycleOwner, requestCode: Int, resultCode: Int, data: Intent?) {}
+    // Same
+    open fun onRequestPermissionsResult(owner: LifecycleOwner, requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {}
+}
+
+object CameraModule: Component() {
     override fun onActivityResult(
         owner: LifecycleOwner,
         requestCode: Int,
