@@ -12,24 +12,12 @@ import androidx.lifecycle.LifecycleOwner
 // Common functions here.
 interface Component: DefaultLifecycleObserver {}
 
-// Use subclasses for each type (activityResult, permissionResult) Common types in Component.
 interface UsesActivityResult {
     fun onActivityResult(owner: LifecycleOwner, success: Boolean, data: Intent?)
 }
 
 interface UsesPermission {
     fun onPermissionResult(owner: LifecycleOwner, success: Boolean)
-}
-
-
-
-fun execute(component: Component) {
-    if (component is UsesActivityResult) {
-//        activityResultModule.handle(component);
-    }
-    if (component is UsesPermission) {
-//      permissionModule.handle(component);
-    }
 }
 
 class CameraModule: Component,
