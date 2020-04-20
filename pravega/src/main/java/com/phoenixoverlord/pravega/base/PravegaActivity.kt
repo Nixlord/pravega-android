@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 
-class PravegaActivity: AppCompatActivity() {
+open class PravegaActivity: AppCompatActivity() {
     val activityResultComponents = arrayListOf<UsesActivityResult>()
     val permissionResultComponents = arrayListOf<UsesPermission>()
 
@@ -30,7 +30,6 @@ class PravegaActivity: AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
     }
 
     override fun onRequestPermissionsResult(
@@ -40,6 +39,11 @@ class PravegaActivity: AppCompatActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+}
 
-
+class Test: PravegaActivity() {
+    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+        super.onCreate(savedInstanceState, persistentState)
+        inject(arrayListOf(CameraModule()))
+    }
 }
