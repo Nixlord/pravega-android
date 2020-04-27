@@ -7,7 +7,6 @@ import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import java.util.concurrent.ConcurrentHashMap
 
-
 class ActivityResultHandler {
 
     private class ActivityResultAction {

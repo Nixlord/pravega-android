@@ -32,6 +32,9 @@ open class PravegaActivity: AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        activityResultComponents.forEach { component ->
+            component.onActivityResult(this, true, data)
+        }
     }
 
     override fun onRequestPermissionsResult(
@@ -40,6 +43,9 @@ open class PravegaActivity: AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        permissionResultComponents.forEach { component ->
+            component.onPermissionResult(this, true)
+        }
     }
 }
 
