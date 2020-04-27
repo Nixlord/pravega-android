@@ -7,6 +7,23 @@ import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
+//class Test: PravegaActivity() {
+//    private val cameraModule = CameraModule(this)
+//    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
+//        super.onCreate(savedInstanceState, persistentState)
+//        inject(cameraModule)
+//
+//        val textView = TextView(this)
+//        textView.setOnClickListener {
+//            cameraModule.takePhoto {
+//                Log.d("FILE Recieved", it.name)
+//            }
+//        }
+//    }
+//
+//}
+
+
 open class PravegaActivity: AppCompatActivity() {
     private val activityResultComponents = arrayListOf<UsesActivityResult>()
     private val permissionResultComponents = arrayListOf<UsesPermission>()
@@ -47,20 +64,4 @@ open class PravegaActivity: AppCompatActivity() {
             component.onPermissionResult(this, true)
         }
     }
-}
-
-class Test: PravegaActivity() {
-    private val cameraModule = CameraModule(this)
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
-        inject(cameraModule)
-
-        val textView = TextView(this)
-        textView.setOnClickListener {
-            cameraModule.takePhoto {
-                Log.d("FILE Recieved", it.name)
-            }
-        }
-    }
-
 }

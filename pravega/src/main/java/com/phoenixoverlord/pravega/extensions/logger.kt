@@ -3,6 +3,8 @@ package com.phoenixoverlord.pravega.extensions
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.phoenixoverlord.pravega.base.extensions.getSimpleName
+import com.phoenixoverlord.pravega.base.extensions.getTag
 
 
 //Using Base Class Throwable instead of granular usage. Less resilient
