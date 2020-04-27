@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentLinkedQueue
 // Common functions here.
 // Implement multiple constructors taking PravegaActivity / PravegaFragment
 // Common utility to execute with Activity / Fragment
+// How to use nested components ?
 abstract class Component: DefaultLifecycleObserver {}
 
 interface UsesActivityResult {
