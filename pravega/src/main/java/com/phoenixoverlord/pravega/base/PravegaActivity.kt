@@ -50,7 +50,7 @@ open class PravegaActivity: AppCompatActivity() {
 }
 
 class Test: PravegaActivity() {
-    private val cameraModule = CameraModule()
+    private val cameraModule = CameraModule(this)
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
         inject(cameraModule)

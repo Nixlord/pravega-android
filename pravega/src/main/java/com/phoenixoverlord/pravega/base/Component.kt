@@ -3,7 +3,6 @@ package com.phoenixoverlord.pravega.base
 import android.content.Intent
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
-import com.google.android.gms.tasks.OnFailureListener
 import java.io.File
 import java.util.concurrent.ConcurrentLinkedQueue
 
@@ -13,6 +12,8 @@ import java.util.concurrent.ConcurrentLinkedQueue
  */
 
 // Common functions here.
+// Implement multiple constructors taking PravegaActivity / PravegaFragment
+// Common utility to execute with Activity / Fragment
 abstract class Component: DefaultLifecycleObserver {}
 
 interface UsesActivityResult {
@@ -24,10 +25,11 @@ interface UsesPermission {
 }
 
 // Need proper mechanism for reentrant calls
-class CameraModule: Component(),
+class CameraModule(val activity: PravegaActivity): Component(),
     UsesPermission,
     UsesActivityResult {
 
+    // Make this into a generic interface
     class Result(
         var onSuccess: (File) -> Unit = {},
         var onFailure: (Error) -> Unit = {}
@@ -42,35 +44,13 @@ class CameraModule: Component(),
     }
     val taskQueue = ConcurrentLinkedQueue<Result>()
 
-    fun takePhoto(params: String): Result {
+    fun takePhoto(params: () -> Int): Result {
         val result = Result()
         taskQueue.add(result)
+//        activity.requestPermissions()
         return result
     }
 
-    override fun onCreate(owner: LifecycleOwner) {
-        super.onCreate(owner)
-    }
-
-    override fun onResume(owner: LifecycleOwner) {
-        super.onResume(owner)
-    }
-
-    override fun onPause(owner: LifecycleOwner) {
-        super.onPause(owner)
-    }
-
-    override fun onStart(owner: LifecycleOwner) {
-        super.onStart(owner)
-    }
-
-    override fun onStop(owner: LifecycleOwner) {
-        super.onStop(owner)
-    }
-
-    override fun onDestroy(owner: LifecycleOwner) {
-        super.onDestroy(owner)
-    }
 
     override fun onActivityResult(owner: LifecycleOwner, success: Boolean, data: Intent?) {
         TODO("Not yet implemented")
