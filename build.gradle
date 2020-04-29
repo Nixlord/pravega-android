@@ -3,9 +3,13 @@
 apply plugin: 'org.jetbrains.dokka'
 
 dokka {
-    outputFormat = 'html'
-    outputDirectory = "documentation"
+    outputFormat = 'gfm'
+    outputDirectory = "docs"
     subProjects = ["app", "pravega"]
+    configuration {
+        moduleName = ""
+        includeNonPublic = true
+    }
 }
 
 
