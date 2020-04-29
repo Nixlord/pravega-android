@@ -1,8 +1,0 @@
-[./](../../index.md) / [com.phoenixoverlord.pravega.base](../index.md) / [BaseActivity](index.md) / [onActivityResult](./on-activity-result.md)
-
-# onActivityResult
-
-`protected open fun onActivityResult(requestCode: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, resultCode: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, data: Intent?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
-
-CompressionModule
-
