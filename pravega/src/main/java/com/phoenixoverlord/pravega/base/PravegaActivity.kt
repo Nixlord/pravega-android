@@ -25,11 +25,13 @@ import androidx.appcompat.app.AppCompatActivity
 
 
 open class PravegaActivity: AppCompatActivity() {
+    // Choose between BaseActivity Approach and NestedComponent approach
     private val activityResultComponents = arrayListOf<UsesActivityResult>()
     private val permissionResultComponents = arrayListOf<UsesPermission>()
 
     override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
         super.onCreate(savedInstanceState, persistentState)
+
     }
 
     fun inject(vararg components: Component) {

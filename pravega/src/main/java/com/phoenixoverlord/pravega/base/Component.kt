@@ -15,6 +15,11 @@ import java.util.concurrent.ConcurrentLinkedQueue
 // Implement multiple constructors taking PravegaActivity / PravegaFragment
 // Common utility to execute with Activity / Fragment
 // How to use nested components ?
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ */
 abstract class Component: DefaultLifecycleObserver {}
 
 interface UsesActivityResult {
