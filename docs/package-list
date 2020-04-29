@@ -1,0 +1,29 @@
+$dokka.format:gfm
+$dokka.linkExtension:md
+$dokka.location:com.phoenixoverlord.pravega$toast(android.app.Activity, kotlin.String)com.phoenixoverlord.pravega/android.app.-activity/toast.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$addFragment(androidx.appcompat.app.AppCompatActivity, kotlin.Int, androidx.fragment.app.Fragment)com.phoenixoverlord.pravega.base.extensions/androidx.appcompat.app.-app-compat-activity/add-fragment.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$finishAndStart(androidx.appcompat.app.AppCompatActivity, java.lang.Class((kotlin.Any)))com.phoenixoverlord.pravega.base.extensions/androidx.appcompat.app.-app-compat-activity/finish-and-start.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$getSimpleName(androidx.appcompat.app.AppCompatActivity)com.phoenixoverlord.pravega.base.extensions/androidx.appcompat.app.-app-compat-activity/get-simple-name.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$getSimpleName(androidx.fragment.app.Fragment)com.phoenixoverlord.pravega.base.extensions/androidx.fragment.app.-fragment/get-simple-name.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$getTag(androidx.appcompat.app.AppCompatActivity)com.phoenixoverlord.pravega.base.extensions/androidx.appcompat.app.-app-compat-activity/get-tag.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$intentHandlerExists(android.content.pm.PackageManager, android.content.Intent)com.phoenixoverlord.pravega.base.extensions/android.content.pm.-package-manager/intent-handler-exists.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$replaceFragment(androidx.appcompat.app.AppCompatActivity, kotlin.Int, androidx.fragment.app.Fragment)com.phoenixoverlord.pravega.base.extensions/androidx.appcompat.app.-app-compat-activity/replace-fragment.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$safeIntentDispatch(androidx.appcompat.app.AppCompatActivity, android.content.Intent)com.phoenixoverlord.pravega.base.extensions/androidx.appcompat.app.-app-compat-activity/safe-intent-dispatch.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$toastError(androidx.appcompat.app.AppCompatActivity, kotlin.String)com.phoenixoverlord.pravega.base.extensions/androidx.appcompat.app.-app-compat-activity/toast-error.md
+$dokka.location:com.phoenixoverlord.pravega.base.extensions$toastSuccess(androidx.appcompat.app.AppCompatActivity, kotlin.String)com.phoenixoverlord.pravega.base.extensions/androidx.appcompat.app.-app-compat-activity/toast-success.md
+$dokka.location:com.phoenixoverlord.pravega.extensions$addSnapshotListener(com.google.firebase.firestore.DocumentReference, java.lang.Class((com.phoenixoverlord.pravega.extensions.addSnapshotListener.T)), kotlin.Function1((com.phoenixoverlord.pravega.extensions.addSnapshotListener.T, kotlin.Unit)))com.phoenixoverlord.pravega.extensions/com.google.firebase.firestore.-document-reference/add-snapshot-listener.md
+$dokka.location:com.phoenixoverlord.pravega.extensions$inflate(android.view.ViewGroup, kotlin.Int)com.phoenixoverlord.pravega.extensions/android.view.-view-group/inflate.md
+$dokka.location:com.phoenixoverlord.pravega.extensions$logDebug(androidx.appcompat.app.AppCompatActivity, kotlin.String)com.phoenixoverlord.pravega.extensions/androidx.appcompat.app.-app-compat-activity/log-debug.md
+$dokka.location:com.phoenixoverlord.pravega.extensions$logDebug(androidx.fragment.app.Fragment, kotlin.String)com.phoenixoverlord.pravega.extensions/androidx.fragment.app.-fragment/log-debug.md
+$dokka.location:com.phoenixoverlord.pravega.extensions$logError(androidx.appcompat.app.AppCompatActivity, kotlin.Throwable)com.phoenixoverlord.pravega.extensions/androidx.appcompat.app.-app-compat-activity/log-error.md
+$dokka.location:com.phoenixoverlord.pravega.extensions$onTextChange(android.widget.EditText, kotlin.Function1((kotlin.String, kotlin.Unit)))com.phoenixoverlord.pravega.extensions/android.widget.-edit-text/on-text-change.md
+$dokka.location:com.phoenixoverlord.pravega.extensions$pushImage(com.google.firebase.storage.StorageReference, java.io.File, kotlin.String)com.phoenixoverlord.pravega.extensions/com.google.firebase.storage.-storage-reference/push-image.md
+com.phoenixoverlord.pravega
+com.phoenixoverlord.pravega.base
+com.phoenixoverlord.pravega.base.extensions
+com.phoenixoverlord.pravega.cloud.firebase
+com.phoenixoverlord.pravega.extensions
+com.phoenixoverlord.pravega.mechanisms
+com.phoenixoverlord.pravega.utils
+com.phoenixoverlord.pravegaapp
+com.phoenixoverlord.pravegaapp.Views

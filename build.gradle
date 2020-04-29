@@ -7,7 +7,7 @@ dokka {
     outputDirectory = "docs"
     subProjects = ["app", "pravega"]
     configuration {
-        moduleName = ""
+        moduleName = "./"
         includeNonPublic = true
     }
 }
