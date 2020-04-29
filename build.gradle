@@ -3,7 +3,7 @@
 apply plugin: 'org.jetbrains.dokka'
 
 dokka {
-    outputFormat = 'gfm'
+    outputFormat = 'html'
     outputDirectory = "docs"
     subProjects = ["app", "pravega"]
     configuration {
