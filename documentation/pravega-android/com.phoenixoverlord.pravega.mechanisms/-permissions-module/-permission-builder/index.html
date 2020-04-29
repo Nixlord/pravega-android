@@ -1,0 +1,51 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>PermissionsModule.PermissionBuilder - pravega-android</title>
+<link rel="stylesheet" href="../../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../../index.html">pravega-android</a>&nbsp;/&nbsp;<a href="../../index.html">com.phoenixoverlord.pravega.mechanisms</a>&nbsp;/&nbsp;<a href="../index.html">PermissionsModule</a>&nbsp;/&nbsp;<a href="./index.html">PermissionBuilder</a><br/>
+<br/>
+<h1>PermissionBuilder</h1>
+<code><span class="keyword">inner</span> <span class="keyword">class </span><span class="identifier">PermissionBuilder</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">PermissionBuilder</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.PermissionsModule.PermissionBuilder$<init>(kotlin.Int)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="execute.html">execute</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">execute</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.PermissionsModule.PermissionBuilder$execute(kotlin.Function0((kotlin.Unit)))/onGranted">onGranted</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ logDebug("DefaultPermitCallback", "Default") }<span class="symbol">)</span><span class="symbol">: </span><span class="identifier">PermissionBuilder</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-error.html">onError</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onError</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.PermissionsModule.PermissionBuilder$onError(kotlin.Function1((java.lang.Error, kotlin.Unit)))/onError">onError</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-error/index.html"><span class="identifier">Error</span></a><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;{ error -&gt; logError("DefaultPermitCallback", error) }<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="with-permissions.html">withPermissions</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">withPermissions</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.PermissionsModule.PermissionBuilder$withPermissions(com.phoenixoverlord.pravega.base.BaseActivity, java.util.ArrayList((kotlin.String)))/activity">activity</span><span class="symbol">:</span>&nbsp;<a href="../../../com.phoenixoverlord.pravega.base/-base-activity/index.html"><span class="identifier">BaseActivity</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.PermissionsModule.PermissionBuilder$withPermissions(com.phoenixoverlord.pravega.base.BaseActivity, java.util.ArrayList((kotlin.String)))/permissions">permissions</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">PermissionBuilder</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

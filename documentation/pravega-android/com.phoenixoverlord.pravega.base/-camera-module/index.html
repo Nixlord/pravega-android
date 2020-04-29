@@ -1,0 +1,82 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CameraModule - pravega-android</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">pravega-android</a>&nbsp;/&nbsp;<a href="../index.html">com.phoenixoverlord.pravega.base</a>&nbsp;/&nbsp;<a href="./index.html">CameraModule</a><br/>
+<br/>
+<h1>CameraModule</h1>
+<code><span class="keyword">class </span><span class="identifier">CameraModule</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">, </span><a href="../-uses-permission/index.html"><span class="identifier">UsesPermission</span></a><span class="symbol">, </span><a href="../-uses-activity-result/index.html"><span class="identifier">UsesActivityResult</span></a></code>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-result/index.html">Result</a></h4>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">Result</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">CameraModule</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.base.CameraModule$<init>(com.phoenixoverlord.pravega.base.PravegaActivity)/activity">activity</span><span class="symbol">:</span>&nbsp;<a href="../-pravega-activity/index.html"><span class="identifier">PravegaActivity</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="activity.html">activity</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">activity</span><span class="symbol">: </span><a href="../-pravega-activity/index.html"><span class="identifier">PravegaActivity</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="task-queue.html">taskQueue</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">taskQueue</span><span class="symbol">: </span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/concurrent/ConcurrentLinkedQueue.html"><span class="identifier">ConcurrentLinkedQueue</span></a><span class="symbol">&lt;</span><span class="identifier">Result</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="on-activity-result.html">onActivityResult</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onActivityResult</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.base.CameraModule$onActivityResult(androidx.lifecycle.LifecycleOwner, kotlin.Boolean, android.content.Intent)/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.base.CameraModule$onActivityResult(androidx.lifecycle.LifecycleOwner, kotlin.Boolean, android.content.Intent)/success">success</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.base.CameraModule$onActivityResult(androidx.lifecycle.LifecycleOwner, kotlin.Boolean, android.content.Intent)/data">data</span><span class="symbol">:</span>&nbsp;<span class="identifier">Intent</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-permission-result.html">onPermissionResult</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onPermissionResult</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.base.CameraModule$onPermissionResult(androidx.lifecycle.LifecycleOwner, kotlin.Boolean)/owner">owner</span><span class="symbol">:</span>&nbsp;<span class="identifier">LifecycleOwner</span><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.base.CameraModule$onPermissionResult(androidx.lifecycle.LifecycleOwner, kotlin.Boolean)/success">success</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="take-photo.html">takePhoto</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">takePhoto</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.base.CameraModule$takePhoto(kotlin.Function0((kotlin.Int)))/params">params</span><span class="symbol">:</span>&nbsp;<span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">Result</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
