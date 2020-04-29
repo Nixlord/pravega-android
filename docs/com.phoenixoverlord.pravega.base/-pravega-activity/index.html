@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>PravegaActivity - ./</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">./</a>&nbsp;/&nbsp;<a href="../index.html">com.phoenixoverlord.pravega.base</a>&nbsp;/&nbsp;<a href="./index.html">PravegaActivity</a><br/>
+<br/>
+<h1>PravegaActivity</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">PravegaActivity</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">AppCompatActivity</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">PravegaActivity</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="activity-result-components.html">activityResultComponents</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">activityResultComponents</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../-uses-activity-result/index.html"><span class="identifier">UsesActivityResult</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="permission-result-components.html">permissionResultComponents</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">permissionResultComponents</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-array-list/index.html"><span class="identifier">ArrayList</span></a><span class="symbol">&lt;</span><a href="../-uses-permission/index.html"><span class="identifier">UsesPermission</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="inject.html">inject</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">inject</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$inject(kotlin.Array((com.phoenixoverlord.pravega.base.Component)))/components">components</span><span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">inject</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$inject(com.phoenixoverlord.pravega.base.Component)/component">component</span><span class="symbol">:</span>&nbsp;<a href="../-component/index.html"><span class="identifier">Component</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-activity-result.html">onActivityResult</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onActivityResult</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/resultCode">resultCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$onActivityResult(kotlin.Int, kotlin.Int, android.content.Intent)/data">data</span><span class="symbol">:</span>&nbsp;<span class="identifier">Intent</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-create.html">onCreate</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onCreate</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$onCreate(android.os.Bundle, android.os.PersistableBundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<span class="identifier">Bundle</span><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$onCreate(android.os.Bundle, android.os.PersistableBundle)/persistentState">persistentState</span><span class="symbol">:</span>&nbsp;<span class="identifier">PersistableBundle</span><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="on-request-permissions-result.html">onRequestPermissionsResult</a></h4>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">onRequestPermissionsResult</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$onRequestPermissionsResult(kotlin.Int, kotlin.Array((kotlin.String)), kotlin.IntArray)/requestCode">requestCode</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$onRequestPermissionsResult(kotlin.Int, kotlin.Array((kotlin.String)), kotlin.IntArray)/permissions">permissions</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-array/index.html"><span class="identifier">Array</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.base.PravegaActivity$onRequestPermissionsResult(kotlin.Int, kotlin.Array((kotlin.String)), kotlin.IntArray)/grantResults">grantResults</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int-array/index.html"><span class="identifier">IntArray</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

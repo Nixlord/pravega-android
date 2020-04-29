@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>NotificationModule - ./</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">./</a>&nbsp;/&nbsp;<a href="../index.html">com.phoenixoverlord.pravega.mechanisms</a>&nbsp;/&nbsp;<a href="./index.html">NotificationModule</a><br/>
+<br/>
+<h1>NotificationModule</h1>
+<code><span class="keyword">class </span><span class="identifier">NotificationModule</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">ContextWrapper</span></code>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<code><span class="identifier">NotificationModule</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$<init>(android.content.Context)/context">context</span><span class="symbol">:</span>&nbsp;<span class="identifier">Context</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-c-h-a-n-n-e-l_-i-d_-u-p-l-o-a-d.html">CHANNEL_ID_UPLOAD</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">CHANNEL_ID_UPLOAD</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="looping-atomic-integer.html">loopingAtomicInteger</a></h4>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">loopingAtomicInteger</span><span class="symbol">: </span><a href="../../com.phoenixoverlord.pravega.utils/-looping-atomic-integer/index.html"><span class="identifier">LoopingAtomicInteger</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="cancel-notification.html">cancelNotification</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">cancelNotification</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$cancelNotification(kotlin.Int)/notificationId">notificationId</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-download-progress-notification.html">createDownloadProgressNotification</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">createDownloadProgressNotification</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$createDownloadProgressNotification(kotlin.Int, kotlin.String, com.google.firebase.storage.FileDownloadTask)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$createDownloadProgressNotification(kotlin.Int, kotlin.String, com.google.firebase.storage.FileDownloadTask)/title">title</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$createDownloadProgressNotification(kotlin.Int, kotlin.String, com.google.firebase.storage.FileDownloadTask)/fileDownloadTask">fileDownloadTask</span><span class="symbol">:</span>&nbsp;<span class="identifier">FileDownloadTask</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-handler-intent.html">createHandlerIntent</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">createHandlerIntent</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><span class="identifier">PendingIntent</span><span class="symbol">?</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-notification.html">createNotification</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">createNotification</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$createNotification(kotlin.String, kotlin.String)/title">title</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$createNotification(kotlin.String, kotlin.String)/text">text</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-notification-channel.html">createNotificationChannel</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">createNotificationChannel</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-upload-progress-notification.html">createUploadProgressNotification</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">createUploadProgressNotification</span><span class="symbol">(</span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$createUploadProgressNotification(kotlin.Int, kotlin.String, com.google.firebase.storage.UploadTask)/id">id</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a>&nbsp;<span class="symbol">=</span>&nbsp;loopingAtomicInteger.nextInt()<span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$createUploadProgressNotification(kotlin.Int, kotlin.String, com.google.firebase.storage.UploadTask)/title">title</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="com.phoenixoverlord.pravega.mechanisms.NotificationModule$createUploadProgressNotification(kotlin.Int, kotlin.String, com.google.firebase.storage.UploadTask)/uploadTask">uploadTask</span><span class="symbol">:</span>&nbsp;<span class="identifier">UploadTask</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
