@@ -6,30 +6,25 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.phoenixoverlord.pravega.Pravega
-import com.phoenixoverlord.pravega.Server
+import com.phoenixoverlord.pravega.config.PravegaConfig
 import com.phoenixoverlord.pravega.api.PravegaService
-import com.phoenixoverlord.pravega.api.core.friend.Friend
+import com.phoenixoverlord.pravega.api.core.friend.onResult
 import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.io.IOException
 import javax.websocket.*
+import kotlin.Error
 
 
 //import com.phoenixoverlord.pravega.toast
 
 class MainActivity : AppCompatActivity() {
 
-    val pravega = PravegaService(Pravega.DEV)
+    val pravega = PravegaService(PravegaConfig.DEV)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,13 +64,14 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainFab.setOnClickListener {
-            toast(Pravega.DEV.toString())
+            toast(PravegaConfig.DEV.toString())
             pravega.friendAPI.getAllFriends()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { values, err ->
+                .onResult { values, err ->
                     if (err != null) {
                         logError(err)
+                    }
+                    else if (values == null) {
+                        logError(Error("NULL RESPONSE"))
                     }
                     else {
                         values.forEach { (idx, friend) ->

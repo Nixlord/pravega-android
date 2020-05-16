@@ -1,6 +1,6 @@
 package com.phoenixoverlord.pravega.api
 
-import com.phoenixoverlord.pravega.Server
+import com.phoenixoverlord.pravega.config.Server
 import com.phoenixoverlord.pravega.api.core.friend.FriendAPI
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
