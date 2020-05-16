@@ -24,6 +24,7 @@ com.phoenixoverlord.pravega.base.extensions
 com.phoenixoverlord.pravega.cloud.firebase
 com.phoenixoverlord.pravega.extensions
 com.phoenixoverlord.pravega.mechanisms
+com.phoenixoverlord.pravega.networking
 com.phoenixoverlord.pravega.utils
 com.phoenixoverlord.pravegaapp
 com.phoenixoverlord.pravegaapp.Views

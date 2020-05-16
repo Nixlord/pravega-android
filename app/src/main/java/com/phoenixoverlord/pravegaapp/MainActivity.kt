@@ -6,7 +6,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.Firebase
 import com.phoenixoverlord.pravega.extensions.logDebug
@@ -53,9 +54,12 @@ class MainActivity : AppCompatActivity() {
         recyclerview.removeModel("Diksha")
         recyclerview.addModel("Parichay")
 
-        remoteConfig().thenApply {
+        remoteConfig(mapOf(
+            "predictor" to "https://pravegapredictor.herokuapp.com/",
+            "backend" to "https://pravegacore.herokuapp.com/"
+        )).thenApply {
             it.entries.forEach { logDebug("${it.key}:${it.value}") }
         }
-
     }
+
 }
