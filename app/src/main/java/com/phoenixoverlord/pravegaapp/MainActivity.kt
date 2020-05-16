@@ -14,6 +14,8 @@ import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import retrofit2.Call
@@ -69,21 +71,19 @@ class MainActivity : AppCompatActivity() {
         mainFab.setOnClickListener {
             toast(Pravega.DEV.toString())
             pravega.friendAPI.getAllFriends()
-                .enqueue(object: Callback<Map<Int, Friend>> {
-                    override fun onFailure(call: Call<Map<Int, Friend>>, t: Throwable) {
-                        logError(t)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { values, err ->
+                    if (err != null) {
+                        logError(err)
                     }
-
-                    override fun onResponse(
-                        call: Call<Map<Int, Friend>>,
-                        response: Response<Map<Int, Friend>>
-                    ) {
-                        response.body()?.forEach { idx, friend ->
+                    else {
+                        values.forEach { (idx, friend) ->
                             logDebug("$idx: $friend")
                         }
                     }
-                })
 
+                }
         }
 
         val ws = object: Endpoint() {

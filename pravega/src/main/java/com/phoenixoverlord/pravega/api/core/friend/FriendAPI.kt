@@ -1,9 +1,11 @@
 package com.phoenixoverlord.pravega.api.core.friend
 
-import retrofit2.Call
+import io.reactivex.Observable
+import io.reactivex.Single
+
 import retrofit2.http.GET
 
 public interface FriendAPI {
     @GET("/friends")
-    fun getAllFriends(): Call<Map<Int, Friend>>
+    fun getAllFriends(): Single<Map<Int, Friend>>
 }
