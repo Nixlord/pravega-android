@@ -5,5 +5,5 @@ import retrofit2.http.GET
 
 public interface FriendAPI {
     @GET("/friends")
-    fun getAllFriends(): Call<HashMap<Int, Friend>>
+    fun getAllFriends(): Call<Map<Int, Friend>>
 }

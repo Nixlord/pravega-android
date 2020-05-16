@@ -9,11 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.phoenixoverlord.pravega.Pravega
 import com.phoenixoverlord.pravega.Server
 import com.phoenixoverlord.pravega.api.PravegaService
+import com.phoenixoverlord.pravega.api.core.friend.Friend
 import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.logDebug
+import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.IOException
 import javax.websocket.*
 
@@ -64,6 +69,20 @@ class MainActivity : AppCompatActivity() {
         mainFab.setOnClickListener {
             toast(Pravega.DEV.toString())
             pravega.friendAPI.getAllFriends()
+                .enqueue(object: Callback<Map<Int, Friend>> {
+                    override fun onFailure(call: Call<Map<Int, Friend>>, t: Throwable) {
+                        logError(t)
+                    }
+
+                    override fun onResponse(
+                        call: Call<Map<Int, Friend>>,
+                        response: Response<Map<Int, Friend>>
+                    ) {
+                        response.body()?.forEach { idx, friend ->
+                            logDebug("$idx: $friend")
+                        }
+                    }
+                })
 
         }
 

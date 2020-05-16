@@ -23,7 +23,6 @@ android {
 //        buildConfigField 'String', 'DEV_SERVER', "\"${InetAddress.localHost.hostAddress}\""
         buildConfigField 'String', 'DEV_SERVER', "\"192.168.0.70\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
