@@ -51,5 +51,5 @@ dependencies {
 //        transitive(true)
 //    }
     api project(":pravega")
-    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'com.google.android.material:material:1.1.0'
 }
