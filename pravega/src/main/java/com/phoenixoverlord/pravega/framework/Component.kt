@@ -1,4 +1,4 @@
-package com.phoenixoverlord.pravega.base
+package com.phoenixoverlord.pravega.framework
 
 import android.content.Intent
 import androidx.lifecycle.DefaultLifecycleObserver

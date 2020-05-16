@@ -1,14 +1,11 @@
-package com.phoenixoverlord.pravega.base
+package com.phoenixoverlord.pravega.framework
 
 import android.content.Intent
-import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.phoenixoverlord.pravega.mechanisms.ActivityResultHandler
 import com.phoenixoverlord.pravega.mechanisms.NotificationModule
 import com.phoenixoverlord.pravega.mechanisms.PermissionsModule
 import com.phoenixoverlord.pravega.utils.LoopingAtomicInteger
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 

@@ -1,33 +1,33 @@
 package com.phoenixoverlord.pravegaapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
+import com.phoenixoverlord.pravega.Pravega
+import com.phoenixoverlord.pravega.Server
+import com.phoenixoverlord.pravega.api.PravegaService
 import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
-import com.phoenixoverlord.pravega.extensions.Firebase
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.toast
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.list_item.*
 import kotlinx.android.synthetic.main.list_item.view.*
-import kotlinx.android.synthetic.main.list_item.view.button
-import java.util.*
-import java.util.function.Consumer
+import java.io.IOException
+import javax.websocket.*
+
 
 //import com.phoenixoverlord.pravega.toast
 
 class MainActivity : AppCompatActivity() {
 
+    val pravega = PravegaService(Pravega.DEV)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         //toast("Hello World")
-
         Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
 
         val list = arrayListOf("Shibasis", "Diksha")
@@ -59,6 +59,35 @@ class MainActivity : AppCompatActivity() {
             "backend" to "https://pravegacore.herokuapp.com/"
         )).thenApply {
             it.entries.forEach { logDebug("${it.key}:${it.value}") }
+        }
+
+        mainFab.setOnClickListener {
+            toast(Pravega.DEV.toString())
+            pravega.friendAPI.getAllFriends()
+
+        }
+
+        val ws = object: Endpoint() {
+            override fun onOpen(session: Session?, config: EndpointConfig?) {
+                val remote = session!!.basicRemote
+                session.addMessageHandler(object : MessageHandler.Whole<String?> {
+                    override fun onMessage(text: String?) {
+                        try {
+                            remote.sendText(text)
+                        } catch (ioe: IOException) {
+                            // handle send failure here
+                        }
+                    }
+                })
+            }
+
+            override fun onClose(session: Session?, closeReason: CloseReason?) {
+                super.onClose(session, closeReason)
+            }
+
+            override fun onError(session: Session?, thr: Throwable?) {
+                super.onError(session, thr)
+            }
         }
     }
 

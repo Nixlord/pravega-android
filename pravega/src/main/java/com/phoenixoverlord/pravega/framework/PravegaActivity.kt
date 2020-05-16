@@ -1,10 +1,8 @@
-package com.phoenixoverlord.pravega.base
+package com.phoenixoverlord.pravega.framework
 
 import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
-import android.util.Log
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 //class Test: PravegaActivity() {

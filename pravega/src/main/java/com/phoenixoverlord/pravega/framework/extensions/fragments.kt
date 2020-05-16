@@ -1,5 +1,5 @@
 @file:JvmName("FragmentUtils")
-package com.phoenixoverlord.pravega.base.extensions
+package com.phoenixoverlord.pravega.framework.extensions
 
 import androidx.fragment.app.Fragment
 

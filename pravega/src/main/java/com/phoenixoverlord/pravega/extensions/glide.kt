@@ -1,7 +1,6 @@
 package com.phoenixoverlord.pravega.extensions
 
 import android.net.Uri
-import android.os.Handler
 import android.widget.ImageView
 import androidx.annotation.DrawableRes
 import androidx.core.content.FileProvider
@@ -11,7 +10,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
-import com.phoenixoverlord.pravega.base.BaseActivity
+import com.phoenixoverlord.pravega.framework.BaseActivity
 import com.phoenixoverlord.pravega.extensions.Firebase.storage
 import java.io.File
 import java.lang.Error

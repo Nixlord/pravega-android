@@ -11,7 +11,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.storage.FileDownloadTask
 import com.google.firebase.storage.UploadTask
-import com.phoenixoverlord.pravega.base.BaseActivity
+import com.phoenixoverlord.pravega.framework.BaseActivity
 
 import com.phoenixoverlord.pravega.utils.LoopingAtomicInteger
 

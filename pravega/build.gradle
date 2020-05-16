@@ -19,6 +19,9 @@ android {
         versionCode 1
         versionName "1.0"
 
+//        This works but returns ethernet address. We need the wifi address
+//        buildConfigField 'String', 'DEV_SERVER', "\"${InetAddress.localHost.hostAddress}\""
+        buildConfigField 'String', 'DEV_SERVER', "\"192.168.0.70\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
@@ -27,6 +30,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        dev {
+//            buildConfigField "String", "DEV_IP", "192.168.0.70"
         }
     }
 
@@ -47,7 +53,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 
-    // TRANSITIVE NOT WORKING TODO
+    // INEFFICIENT TRANSITIVE WORKING TODO
     // Firebase
     api('com.google.firebase:firebase-config:19.1.4') {
         transitive(true)
@@ -86,12 +92,17 @@ dependencies {
 
     // Retrofit and Moshi
     api("javax.websocket:javax.websocket-api:1.1")
-    api("com.squareup.okhttp3:okhttp:4.6.0")
+    api("com.squareup.okhttp3:okhttp:4.6.0") {
+        transitive = true
+    }
     api('com.squareup.retrofit2:retrofit:2.8.1') {
         transitive = true
     }
     api('com.squareup.retrofit2:adapter-rxjava2:2.8.1') {
         transitive = true
+    }
+    api('com.squareup.retrofit2:converter-moshi:2.8.1') {
+        transitive(true)
     }
     api('com.squareup.moshi:moshi:1.9.2') {
         transitive = true
@@ -118,29 +129,15 @@ dependencies {
         transitive = true
     }
 
-    // ViewModel
+    // JetPack
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
-    // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
-    // Saved state module for ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version"
-    // alternately - if using Java8, use the following instead of lifecycle-compiler
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-//    // optional - ReactiveStreams support for LiveData
-//    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
-//    // optional - Test helpers for LiveData
-//    testImplementation "androidx.arch.core:core-testing:$arch_version"
-
-
-    // (Java only)
     implementation "androidx.work:work-runtime:$work_version"
-//    // Kotlin + coroutines
-//    implementation "androidx.work:work-runtime-ktx:$work_version"
-//    // optional - RxJava2 support
-//    implementation "androidx.work:work-rxjava2:$work_version"
-//    // optional - Test helpers
-//    androidTestImplementation "androidx.work:work-testing:$work_version"
-
+    // ToDo Remove dependency
+    // Hack: https://stackoverflow.com/questions/56639529/duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu
+    implementation 'com.google.guava:guava:27.0.1-android'
 }
 
 repositories {

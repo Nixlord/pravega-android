@@ -1,5 +1,5 @@
 @file:JvmName("ActivityUtils")
-package com.phoenixoverlord.pravega.base.extensions
+package com.phoenixoverlord.pravega.framework.extensions
 
 import android.content.Intent
 import android.content.pm.PackageManager

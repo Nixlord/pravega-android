@@ -3,7 +3,7 @@ package com.phoenixoverlord.pravega.mechanisms
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import com.phoenixoverlord.pravega.base.BaseActivity
+import com.phoenixoverlord.pravega.framework.BaseActivity
 import com.phoenixoverlord.pravega.extensions.*
 import java.util.concurrent.ConcurrentHashMap
 
