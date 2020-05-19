@@ -94,7 +94,7 @@ dependencies {
     api("com.squareup.okhttp3:okhttp:4.6.0") {
         transitive = true
     }
-    api('com.squareup.retrofit2:retrofit:2.8.1') {
+    api('com.squareup.retrofit2:retrofit:2.8.2') {
         transitive = true
     }
     api('com.squareup.retrofit2:adapter-rxjava2:2.8.1') {
