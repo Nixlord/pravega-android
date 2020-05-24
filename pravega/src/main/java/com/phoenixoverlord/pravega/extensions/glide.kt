@@ -11,7 +11,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import com.phoenixoverlord.pravega.framework.BaseActivity
-import com.phoenixoverlord.pravega.extensions.Firebase.storage
+import com.phoenixoverlord.pravega.cloud.firebase.extensions.Firebase.storage
 import java.io.File
 import java.lang.Error
 

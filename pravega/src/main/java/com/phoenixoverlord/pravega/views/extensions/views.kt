@@ -1,5 +1,5 @@
 @file:JvmName("ViewUtils")
-package com.phoenixoverlord.pravega.extensions
+package com.phoenixoverlord.pravega.views.extensions
 
 import android.text.Editable
 import android.text.TextWatcher

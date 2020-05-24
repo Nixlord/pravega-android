@@ -1,4 +1,4 @@
-package com.phoenixoverlord.pravega.extensions
+package com.phoenixoverlord.pravega.cloud.firebase.extensions
 
 import android.net.Uri
 import com.google.firebase.auth.FirebaseAuth
@@ -9,14 +9,12 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
-import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
-import io.reactivex.Observable
+import com.phoenixoverlord.pravega.extensions.logError
 import java.io.File
 import java.lang.Error
-import java.util.*
 
 
-object Firebase {
+public object Firebase {
     /**
      * Custom getters so that we don't store a reference to context
      * (FirebaseFirestore.getInstance() has reference to context)
@@ -36,7 +34,7 @@ object Firebase {
 
 
 
-fun StorageReference.pushImage(compressedImage : File, imageName: String) : UploadTask {
+public fun StorageReference.pushImage(compressedImage : File, imageName: String) : UploadTask {
     val imageStorage = this.child("images").child(imageName)
     return imageStorage.putFile(Uri.fromFile(compressedImage))
 }
@@ -62,13 +60,15 @@ fun FirebaseFirestore.savePost(
 }
 */
 
-fun<T> DocumentReference.addSnapshotListener(
+public fun<T> DocumentReference.addSnapshotListener(
     valueType: Class<T>,
     objectListener : (snapshot : T) -> Unit
 ) {
     this.addSnapshotListener { documentSnapshot, firebaseFirestoreException ->
         if (firebaseFirestoreException != null) {
-            logError(firebaseFirestoreException)
+            logError(
+                firebaseFirestoreException
+            )
         }
 
         else if (documentSnapshot == null || ! documentSnapshot.exists()) {
@@ -77,7 +77,9 @@ fun<T> DocumentReference.addSnapshotListener(
 
         else {
             val obj = documentSnapshot.toObject(valueType)
-            obj?.apply(objectListener) ?: logError(Error("Null Object"))
+            obj?.apply(objectListener) ?: logError(
+                Error("Null Object")
+            )
         }
     }
 }
