@@ -41,12 +41,7 @@ class MainActivity : AppCompatActivity() {
                 .onResult { friends, err ->
                     when {
                         err != null -> logError(err)
-                        else -> {
-                            friends.forEach { (idx, friend) ->
-                                logDebug("$idx: $friend")
-                            }
-                            loadFriends(friends.values)
-                        }
+                        else -> loadFriends(friends.values)
                     }
                 }
         }
@@ -54,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun loadFriends(friends: Collection<Friend>) {
         toast("Clearing")
+        friends.forEach{ logDebug("FriendAPI", it.toString()) }
         adapter.clear()
         adapter.addModels(friends)
     }
