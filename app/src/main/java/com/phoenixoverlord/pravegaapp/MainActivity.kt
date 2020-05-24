@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelLazy
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.phoenixoverlord.pravega.config.PravegaConfig
@@ -16,15 +14,17 @@ import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
+import com.phoenixoverlord.pravegaapp.views.recyclerview.PravegaAdapter
+import com.phoenixoverlord.pravegaapp.views.recyclerview.PravegaRecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import java.io.IOException
 import javax.websocket.*
-import kotlin.Error
 
 class MainActivity : AppCompatActivity() {
 
     private val pravega = PravegaService(PravegaConfig.DEV)
+    private lateinit var adapter: PravegaAdapter<Friend>
     private val model: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,7 +53,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadFriends(friends: Collection<Friend>) {
-        friends.forEach(recyclerview::addModel)
+        toast("Clearing")
+        adapter.clear()
+        adapter.addModels(friends)
     }
 
     private fun testRemoteConfig() {
@@ -79,8 +81,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        recyclerview.attach(
-            arrayListOf(),
+        adapter = recyclerview.attach(
             R.layout.list_item,
             LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false),
             binder

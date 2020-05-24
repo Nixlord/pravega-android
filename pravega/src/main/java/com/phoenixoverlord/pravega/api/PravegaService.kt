@@ -11,6 +11,7 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 
 /**
  * Needs Proper design
+ * Ex: Inject this service by default.
  */
 public class PravegaService(server: Server) {
     private val moshi = Moshi.Builder()
