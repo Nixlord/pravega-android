@@ -2,66 +2,36 @@ package com.phoenixoverlord.pravegaapp
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.phoenixoverlord.pravega.config.PravegaConfig
 import com.phoenixoverlord.pravega.api.PravegaService
+import com.phoenixoverlord.pravega.api.core.friend.Friend
 import com.phoenixoverlord.pravega.api.core.friend.onResult
 import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
+import com.phoenixoverlord.pravegaapp.views.PravegaRecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import java.io.IOException
 import javax.websocket.*
 import kotlin.Error
 
-
-//import com.phoenixoverlord.pravega.toast
-
 class MainActivity : AppCompatActivity() {
 
-    val pravega = PravegaService(PravegaConfig.DEV)
+    private val pravega = PravegaService(PravegaConfig.DEV)
+    private val friendList = arrayListOf<Friend>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //toast("Hello World")
-        Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
 
-        val list = arrayListOf("Shibasis", "Diksha")
-
-        val binder: ((View, String) -> Unit) = { view, item ->
-            view.apply {
-                textView.text = item
-                textView2.text = item
-                button.setOnClickListener {
-                    recyclerview.addModel("Shweta")
-                    Toast.makeText(this@MainActivity,"Working",  Toast.LENGTH_SHORT).show()
-                }
-            }
-        }
-
-        recyclerview.attach(
-            list,
-            R.layout.list_item,
-            LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false),
-            binder
-        )
-
-        recyclerview.addModel("Soubhagya")
-        recyclerview.removeModel("Diksha")
-        recyclerview.addModel("Parichay")
-
-        remoteConfig(mapOf(
-            "predictor" to "https://pravegapredictor.herokuapp.com/",
-            "backend" to "https://pravegacore.herokuapp.com/"
-        )).thenApply {
-            it.entries.forEach { logDebug("${it.key}:${it.value}") }
-        }
+        setupRecyclerView(friendList)
+        testingWebsockets()
+        testRemoteConfig()
 
         mainFab.setOnClickListener {
             toast(PravegaConfig.DEV.toString())
@@ -76,13 +46,46 @@ class MainActivity : AppCompatActivity() {
                     else {
                         values.forEach { (idx, friend) ->
                             logDebug("$idx: $friend")
+                            recyclerview.addModel(friend)
                         }
                     }
-
                 }
         }
+    }
 
-        val ws = object: Endpoint() {
+    private fun testRemoteConfig() {
+        remoteConfig(
+            mapOf(
+                "predictor" to "https://pravegapredictor.herokuapp.com/",
+                "backend" to "https://pravegacore.herokuapp.com/"
+            )
+        ).thenApply { config ->
+            config.entries.forEach {
+                logDebug("${it.key}:${it.value}")
+            }
+        }
+    }
+
+    private fun setupRecyclerView(friends: ArrayList<Friend>) {
+        val binder: ((View, Friend) -> Unit) = { view, friend ->
+            view.apply {
+                textView.text = friend.name
+                textView2.text = "Age: ${friend.age}"
+                button.setOnClickListener {
+                    toast(friend.toString())
+                }
+            }
+        }
+        recyclerview.attach(
+            friends,
+            R.layout.list_item,
+            LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false),
+            binder
+        )
+    }
+
+    private fun testingWebsockets() {
+        val ws = object : Endpoint() {
             override fun onOpen(session: Session?, config: EndpointConfig?) {
                 val remote = session!!.basicRemote
                 session.addMessageHandler(object : MessageHandler.Whole<String?> {

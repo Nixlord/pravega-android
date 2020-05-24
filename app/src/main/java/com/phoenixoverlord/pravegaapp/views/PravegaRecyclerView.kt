@@ -1,4 +1,4 @@
-package com.phoenixoverlord.pravegaapp.Views
+package com.phoenixoverlord.pravegaapp.views
 
 import android.content.Context
 import android.util.AttributeSet
@@ -13,6 +13,7 @@ class PravegaRecyclerView : RecyclerView {
     constructor(context: Context, attrs: AttributeSet?) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr)
 
+    //learn generics and reified types in kotlin
     fun<Model> addModel(model : Model) {
         (this.adapter as Adapter<Model>).addModel(model)
     }
