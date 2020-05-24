@@ -33,9 +33,11 @@ class PravegaRecyclerView : RecyclerView {
     }
 
     /**                                         IMPLEMENTATION                                                 */
-
-    inner class Adapter<Model>(val list : ArrayList<Model>, val layout : Int, val binder : (View, Model) -> Unit)
-        : RecyclerView.Adapter<BindableViewHolder<Model>>() {
+    inner class Adapter<Model>(
+        private val list : ArrayList<Model>,
+        private val layout : Int,
+        private val binder : (View, Model) -> Unit
+    ): RecyclerView.Adapter<BindableViewHolder<Model>>() {
 
         fun addModel(model : Model) {
             list.add(model)

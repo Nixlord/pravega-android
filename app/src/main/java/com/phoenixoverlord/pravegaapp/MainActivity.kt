@@ -2,7 +2,10 @@ package com.phoenixoverlord.pravegaapp
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelLazy
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.phoenixoverlord.pravega.config.PravegaConfig
@@ -13,7 +16,6 @@ import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
-import com.phoenixoverlord.pravegaapp.views.PravegaRecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import java.io.IOException
@@ -23,34 +25,35 @@ import kotlin.Error
 class MainActivity : AppCompatActivity() {
 
     private val pravega = PravegaService(PravegaConfig.DEV)
-    private val friendList = arrayListOf<Friend>()
+    private val model: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        setupRecyclerView(friendList)
+        setupRecyclerView()
         testingWebsockets()
         testRemoteConfig()
 
         mainFab.setOnClickListener {
-            toast(PravegaConfig.DEV.toString())
+            toast("Calling ${PravegaConfig.DEV}")
             pravega.friendAPI.getAllFriends()
-                .onResult { values, err ->
-                    if (err != null) {
-                        logError(err)
-                    }
-                    else if (values == null) {
-                        logError(Error("NULL RESPONSE"))
-                    }
-                    else {
-                        values.forEach { (idx, friend) ->
-                            logDebug("$idx: $friend")
-                            recyclerview.addModel(friend)
+                .onResult { friends, err ->
+                    when {
+                        err != null -> logError(err)
+                        else -> {
+                            friends.forEach { (idx, friend) ->
+                                logDebug("$idx: $friend")
+                            }
+                            loadFriends(friends.values)
                         }
                     }
                 }
         }
+    }
+
+    private fun loadFriends(friends: Collection<Friend>) {
+        friends.forEach(recyclerview::addModel)
     }
 
     private fun testRemoteConfig() {
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRecyclerView(friends: ArrayList<Friend>) {
+    private fun setupRecyclerView() {
         val binder: ((View, Friend) -> Unit) = { view, friend ->
             view.apply {
                 textView.text = friend.name
@@ -77,7 +80,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
         recyclerview.attach(
-            friends,
+            arrayListOf(),
             R.layout.list_item,
             LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false),
             binder
@@ -108,5 +111,4 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 }

@@ -7,11 +7,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.http.GET
+import java.lang.Error
 
-fun<T> Single<T>.onResult(consumer: ((T?, Throwable?) -> Unit)): Disposable {
+// Its still bad, simplify.
+fun<T> Single<T>.onResult(consumer: ((T, Throwable?) -> Unit)): Disposable {
     return this.subscribeOn(Schedulers.io())
         .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(consumer)
+        .subscribe { data, error  ->
+            val err = data?.run { error } ?: Error("NULL Data")
+            consumer(data, err)
+        }
 }
 
 public interface FriendAPI {
