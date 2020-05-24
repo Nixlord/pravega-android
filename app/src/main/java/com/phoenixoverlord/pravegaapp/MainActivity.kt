@@ -14,8 +14,7 @@ import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
-import com.phoenixoverlord.pravegaapp.views.recyclerview.PravegaAdapter
-import com.phoenixoverlord.pravegaapp.views.recyclerview.PravegaRecyclerView
+import com.phoenixoverlord.pravega.views.recyclerview.PravegaAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import java.io.IOException

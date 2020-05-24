@@ -1,4 +1,4 @@
-package com.phoenixoverlord.pravegaapp.views.recyclerview
+package com.phoenixoverlord.pravega.views.recyclerview
 
 import android.view.LayoutInflater
 import android.view.View
