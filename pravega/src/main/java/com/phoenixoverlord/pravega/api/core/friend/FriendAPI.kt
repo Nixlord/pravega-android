@@ -1,5 +1,9 @@
 package com.phoenixoverlord.pravega.api.core.friend
 
+import androidx.room.Dao
+import androidx.room.Database
+import androidx.room.Query
+import androidx.room.RoomDatabase
 import com.phoenixoverlord.pravega.extensions.logDebug
 import io.reactivex.Observable
 import io.reactivex.Scheduler
@@ -9,6 +13,7 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.http.GET
 import java.lang.Error
+import kotlin.reflect.KClass
 
 fun<T> Single<T>.onResult(consumer: ((T, Throwable?) -> Unit)): Disposable {
     return this.subscribeOn(Schedulers.io())
@@ -19,7 +24,9 @@ fun<T> Single<T>.onResult(consumer: ((T, Throwable?) -> Unit)): Disposable {
         }
 }
 
+@Dao
 public interface FriendAPI {
+    @Query("SELECT * FROM friends ORDER BY age desc")
     @GET("/friends")
     fun getAllFriends(): Single<Map<Int, Friend>>
 }
