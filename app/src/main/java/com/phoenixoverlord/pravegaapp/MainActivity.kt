@@ -15,6 +15,8 @@ import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
 import com.phoenixoverlord.pravega.views.recyclerview.PravegaAdapter
+import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.squareup.okhttp.OkHttpClient
 import io.crossbar.autobahn.websocket.WebSocketConnection
 import io.crossbar.autobahn.websocket.WebSocketConnectionHandler
@@ -22,10 +24,7 @@ import io.crossbar.autobahn.websocket.types.ConnectionResponse
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
-import okhttp3.Request
-import okhttp3.Response
-import okhttp3.WebSocket
-import okhttp3.WebSocketListener
+import okhttp3.*
 import okio.ByteString
 import okio.ByteString.Companion.decodeHex
 
@@ -46,12 +45,12 @@ class MainActivity : AppCompatActivity() {
         setupRecyclerView()
         testingWebsocketsJavax()
         testRemoteConfig()
-        testingWebSocketsAutoBahn()
+//        testingWebSocketsAutoBahn()
         testingOkHttpWS()
 
         mainFab.setOnClickListener {
             toast("Calling ${PravegaConfig.DEV}")
-            ws.sendClose()
+//            ws.sendClose()
             pravega.friendAPI.getAllFriends()
                 .onResult { friends, err ->
                     when {
@@ -63,7 +62,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testingOkHttpWS() {
-        val request = Request.Builder().url("wss://echo.websocket.org").build()
+        val url = "wss://echo.websocket.org"
+        val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+        val adapter = moshi.adapter(Friend::class.java)
+        val request = Request.Builder().url(PravegaConfig.DEV.WS).build()
         http.newWebSocket(request, object: WebSocketListener() {
             override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
                 super.onClosing(webSocket, code, reason)
@@ -77,20 +79,14 @@ class MainActivity : AppCompatActivity() {
 
             override fun onMessage(webSocket: WebSocket, text: String) {
                 super.onMessage(webSocket, text)
-                logDebug(text)
-            }
-
-            override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
-                super.onMessage(webSocket, bytes)
-                logDebug(bytes.hex())
-
+                logDebug("OKHTTPSPRING", text)
+                val friend = adapter.fromJson(text)
+                logDebug(friend.toString())
             }
 
             override fun onOpen(webSocket: WebSocket, response: Response) {
                 super.onOpen(webSocket, response)
-                webSocket.send("Hello, from Shibasis !")
-                webSocket.send("What's up ?")
-                webSocket.send("cabdab".decodeHex())
+                webSocket.send(adapter.toJson(Friend("Shibasis", 24)))
             }
         })
     }
