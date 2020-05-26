@@ -22,6 +22,7 @@ buildscript {
         work_version = "2.3.4"
         dokka_version = "0.10.0"
         room_version = "2.2.5"
+        dagger_version = "2.27"
     }
 
 
