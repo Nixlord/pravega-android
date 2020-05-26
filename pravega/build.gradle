@@ -193,7 +193,7 @@ dependencies {
 
     // ToDo Remove dependency
     // Hack: https://stackoverflow.com/questions/56639529/duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu
-    implementation 'com.google.guava:guava:27.0.1-android'
+    implementation 'com.google.guava:guava:29.0-android'
 }
 
 repositories {
