@@ -17,16 +17,9 @@ import com.phoenixoverlord.pravega.toast
 import com.phoenixoverlord.pravega.views.recyclerview.PravegaAdapter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
-import com.squareup.okhttp.OkHttpClient
-import io.crossbar.autobahn.websocket.WebSocketConnection
-import io.crossbar.autobahn.websocket.WebSocketConnectionHandler
-import io.crossbar.autobahn.websocket.types.ConnectionResponse
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import okhttp3.*
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +27,6 @@ class MainActivity : AppCompatActivity() {
     private val pravega = PravegaService(PravegaConfig.DEV)
     private lateinit var adapter: PravegaAdapter<Friend>
     private val model: MainViewModel by viewModels()
-    private val ws = WebSocketConnection()
     // See why there are two okhttp, maybe one is from retrofit
     private val http = okhttp3.OkHttpClient()
 
@@ -91,27 +83,6 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun testingWebSocketsAutoBahn() {
-        ws.connect("wss://echo.websocket.org", object : WebSocketConnectionHandler() {
-            override fun onConnect(response: ConnectionResponse?) {
-                logDebug("Connected to server", response?.toString())
-            }
-
-            override fun onOpen() {
-                ws.sendMessage("Echo with Autobahn")
-            }
-
-            override fun onClose(code: Int, reason: String?) {
-                logDebug("Connection closed")
-            }
-
-            override fun onMessage(payload: String) {
-                logDebug("Received message: $payload")
-                ws.sendMessage(payload)
-            }
-        })
-    }
-
     private fun loadFriends(friends: Collection<Friend>) {
         toast("Clearing")
         friends.forEach{ logDebug("FriendAPI", it.toString()) }
@@ -148,6 +119,34 @@ class MainActivity : AppCompatActivity() {
             binder
         )
     }
+
+    // Ex: recyclerView.attach(context, Attachment<Friend>)
+    // use extension function, recyclerView.attach(Attachment<Friend>)
+//    interface Attachment<Model> {
+//        fun getListItemLayoutID()
+//        fun getLayoutManager(context: Context)
+//        fun onViewBound(activity: AppCompatActivity, view: View, model: Model)
+//    }
+//
+//    class FriendView: Attachment<Friend> {
+//        override fun getListItemLayoutID() {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun getLayoutManager(context: Context) {
+//            TODO("Not yet implemented")
+//        }
+//
+//        override fun onViewBound(activity: AppCompatActivity, view: View, model: Friend) {
+//            view.apply {
+//                textView.text = model.name
+//                textView2.text = "Age: ${model.age}"
+//                button.setOnClickListener {
+//                    toast(model.toString())
+//                }
+//            }
+//        }
+//    }
 
     private fun testingWebsocketsJavax() {
 //        val ws = object : Endpoint() {

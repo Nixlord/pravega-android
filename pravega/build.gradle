@@ -114,12 +114,6 @@ dependencies {
     }
 
     // Retrofit and Moshi
-    api("io.crossbar.autobahn:autobahn-android:20.2.1") {
-        transitive = true
-    }
-//    api("javax.websocket:javax.websocket-api:1.1") {
-//        transitive = true
-//    }
     api("com.squareup.okhttp3:okhttp:4.7.2") {
         transitive = true
     }
