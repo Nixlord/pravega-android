@@ -137,6 +137,10 @@ dependencies {
     // ToDo Remove dependency
     // Hack: https://stackoverflow.com/questions/56639529/duplicate-class-com-google-common-util-concurrent-listenablefuture-found-in-modu
     implementation 'com.google.guava:guava:27.0.1-android'
+
+    // Dagger2 dependancy
+    implementation 'com.google.dagger:dagger:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
 }
 
 repositories {
