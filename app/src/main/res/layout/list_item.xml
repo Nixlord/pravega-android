@@ -16,6 +16,13 @@
             android:layout_margin="4dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" android:id="@+id/textView2"/>
+    <TextView
+            android:text="TextView"
+            android:padding="16dp"
+            android:layout_margin="4dp"
+            android:layout_width="match_parent"
+            android:visibility="gone"
+            android:layout_height="wrap_content" android:id="@+id/textView3"/>
     <Button
             android:text="Button"
             android:padding="16dp"
