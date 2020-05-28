@@ -18,7 +18,7 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import java.io.IOException
-import javax.websocket.*
+//import javax.websocket.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
-        val ws = object: Endpoint() {
+        /*val ws = object: Endpoint() {
             override fun onOpen(session: Session?, config: EndpointConfig?) {
                 val remote = session!!.basicRemote
                 session.addMessageHandler(object : MessageHandler.Whole<String?> {
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             override fun onError(session: Session?, thr: Throwable?) {
                 super.onError(session, thr)
             }
-        }
+        } */
     }
 
     private fun addCountryDataToRecyclerView() {
