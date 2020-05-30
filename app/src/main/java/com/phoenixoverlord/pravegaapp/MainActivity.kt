@@ -28,16 +28,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: PravegaAdapter<Friend>
     private val model: MainViewModel by viewModels()
     // See why there are two okhttp, maybe one is from retrofit
-    private val http = okhttp3.OkHttpClient()
+    private val http = OkHttpClient()
+    private lateinit var ws: WebSocket
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setupRecyclerView()
-        testingWebsocketsJavax()
         testRemoteConfig()
-//        testingWebSocketsAutoBahn()
         testingOkHttpWS()
 
         mainFab.setOnClickListener {
@@ -58,7 +57,8 @@ class MainActivity : AppCompatActivity() {
         val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         val adapter = moshi.adapter(Friend::class.java)
         val request = Request.Builder().url(PravegaConfig.DEV.WS).build()
-        http.newWebSocket(request, object: WebSocketListener() {
+        //Create a service for websocket, read about services to figure out which one would be correct
+        ws = http.newWebSocket(request, object : WebSocketListener() {
             override fun onClosing(webSocket: WebSocket, code: Int, reason: String) {
                 super.onClosing(webSocket, code, reason)
                 logDebug(reason)
@@ -147,29 +147,4 @@ class MainActivity : AppCompatActivity() {
 //            }
 //        }
 //    }
-
-    private fun testingWebsocketsJavax() {
-//        val ws = object : Endpoint() {
-//            override fun onOpen(session: Session?, config: EndpointConfig?) {
-//                val remote = session!!.basicRemote
-//                session.addMessageHandler(object : MessageHandler.Whole<String?> {
-//                    override fun onMessage(text: String?) {
-//                        try {
-//                            remote.sendText(text)
-//                        } catch (ioe: IOException) {
-//                            // handle send failure here
-//                        }
-//                    }
-//                })
-//            }
-//
-//            override fun onClose(session: Session?, closeReason: CloseReason?) {
-//                super.onClose(session, closeReason)
-//            }
-//
-//            override fun onError(session: Session?, thr: Throwable?) {
-//                super.onError(session, thr)
-//            }
-//        }
-    }
 }
