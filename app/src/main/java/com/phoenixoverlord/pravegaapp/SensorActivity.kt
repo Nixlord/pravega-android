@@ -30,7 +30,7 @@ data class Reading(val x: Float, val y: Float, val z: Float) {
 
 // Bad way, done for PoC. Use Rx and some other way, interface is stupid
 class SensorActivity : AppCompatActivity(), SensorEventListener {
-    val sensorDB = Firebase.realtime.root.child("sensorRoot")
+    val sensorDB = Firebase.realtime.child("sensorRoot")
 
     lateinit var sensorManager: SensorManager
     var accelerometer: Sensor? = null
@@ -84,7 +84,7 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
                     accValues.clear()
                     linearAccelerationView.text = "$acc"
                     sensorDB.child(name)
-                        .child(UUID.randomUUID().toString())
+                        .child(Date().time.toString())
                         .setValue(acc)
                         .addOnFailureListener(::logError)
                 }
@@ -96,7 +96,7 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
                     gyroValues.clear()
                     gyroscopeView.text = "$acc"
                     sensorDB.child(name)
-                        .child(UUID.randomUUID().toString())
+                        .child(Date().time.toString())
                         .setValue(acc)
                         .addOnFailureListener(::logError)
                 }

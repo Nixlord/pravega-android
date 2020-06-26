@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:766069098100:android:8bdf7f47c94388bf3ff321",
+        "android_client_info": {
+          "package_name": "com.phoenixoverlord.pravega"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "766069098100-af5b0piu781696l6oovs7l322n7d7med.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phoenixoverlord.pravega",
+            "certificate_hash": "f4c3e2ce89647327d642d28a0b08ee23691b032e"
+          }
+        },
+        {
+          "client_id": "766069098100-dbtoua0c4a8c5osmb7jsokdlh5dd5nvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4Ge9zer-C6Av3NHodgQjTA_hKJmq1syw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "766069098100-dbtoua0c4a8c5osmb7jsokdlh5dd5nvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:766069098100:android:3ea06104ff901f8d3ff321",
         "android_client_info": {
           "package_name": "com.phoenixoverlord.pravegaapp"
