@@ -24,9 +24,8 @@ fun<T> Single<T>.onResult(consumer: ((T, Throwable?) -> Unit)): Disposable {
         }
 }
 
-@Dao
+
 public interface FriendAPI {
-    @Query("SELECT * FROM friends ORDER BY age desc")
     @GET("/friends")
     fun getAllFriends(): Single<Map<Int, Friend>>
 }

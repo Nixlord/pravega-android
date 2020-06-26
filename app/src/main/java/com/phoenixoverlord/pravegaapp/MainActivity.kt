@@ -13,6 +13,7 @@ import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
 import com.phoenixoverlord.pravega.config.PravegaConfig
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
+import com.phoenixoverlord.pravega.framework.extensions.finishAndStart
 import com.phoenixoverlord.pravega.toast
 import com.phoenixoverlord.pravega.views.recyclerview.PravegaAdapter
 import com.squareup.moshi.Moshi
@@ -34,10 +35,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        buttonSensorActivity.setOnClickListener {
+            finishAndStart(SensorActivity::class.java)
+        }
+
         setupRecyclerView()
-        testingWebsocketsJavax()
         testRemoteConfig()
-//        testingWebSocketsAutoBahn()
         testingOkHttpWS()
 
         mainFab.setOnClickListener {
@@ -54,7 +57,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun testingOkHttpWS() {
-        val url = "wss://echo.websocket.org"
         val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
         val adapter = moshi.adapter(Friend::class.java)
         val request = Request.Builder().url(PravegaConfig.DEV.WS).build()
@@ -148,28 +150,4 @@ class MainActivity : AppCompatActivity() {
 //        }
 //    }
 
-    private fun testingWebsocketsJavax() {
-//        val ws = object : Endpoint() {
-//            override fun onOpen(session: Session?, config: EndpointConfig?) {
-//                val remote = session!!.basicRemote
-//                session.addMessageHandler(object : MessageHandler.Whole<String?> {
-//                    override fun onMessage(text: String?) {
-//                        try {
-//                            remote.sendText(text)
-//                        } catch (ioe: IOException) {
-//                            // handle send failure here
-//                        }
-//                    }
-//                })
-//            }
-//
-//            override fun onClose(session: Session?, closeReason: CloseReason?) {
-//                super.onClose(session, closeReason)
-//            }
-//
-//            override fun onError(session: Session?, thr: Throwable?) {
-//                super.onError(session, thr)
-//            }
-//        }
-    }
 }
