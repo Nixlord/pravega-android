@@ -7,12 +7,31 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.phoenixoverlord.pravega.cloud.firebase.extensions.Firebase
 import com.phoenixoverlord.pravega.extensions.logDebug
+import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.toast
 import kotlinx.android.synthetic.main.activity_sensors.*
+import java.util.*
+
+data class Reading(val x: Float, val y: Float, val z: Float) {
+    constructor(values: FloatArray) : this(values[0], values[1], values[2]) {}
+    operator fun plus(reading: Reading): Reading {
+        return Reading(x + reading.x, y + reading.y, z + reading.z)
+    }
+    operator fun div(n: Int): Reading {
+        return Reading(x / n, y / n, z / n)
+    }
+
+    override fun toString(): String {
+        return "x: $x, y: $y, z: $z"
+    }
+}
 
 // Bad way, done for PoC. Use Rx and some other way, interface is stupid
 class SensorActivity : AppCompatActivity(), SensorEventListener {
+    val sensorDB = Firebase.realtime.root.child("sensorRoot")
+
     lateinit var sensorManager: SensorManager
     var accelerometer: Sensor? = null
     var gyroscope: Sensor? = null
@@ -23,6 +42,8 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
         Sensor.TYPE_GYROSCOPE to "gyroscope"
     )
 
+    val accValues = arrayListOf<Reading>()
+    val gyroValues = arrayListOf<Reading>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +70,39 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
     override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {}
 
     override fun onSensorChanged(event: SensorEvent?) {
-        val name = event?.sensor?.type?.let { sensorName[it] } ?: "Unknown"
+//        Use this
+//        https://developer.android.com/reference/java/util/concurrent/ThreadPoolExecutor
+
+        val type = event?.sensor?.type
+        val name = type?.let { sensorName[it] } ?: "Unknown"
         logDebug("$name, ${event?.values?.joinToString { "$it" }}")
+        event?.values?.let {
+            if (type == Sensor.TYPE_LINEAR_ACCELERATION) {
+                accValues.add(Reading(it))
+                if (accValues.size == 50) {
+                    val acc = accValues.reduce { acc, reading -> acc + reading } / 50
+                    accValues.clear()
+                    linearAccelerationView.text = "$acc"
+                    sensorDB.child(name)
+                        .child(UUID.randomUUID().toString())
+                        .setValue(acc)
+                        .addOnFailureListener(::logError)
+                }
+            }
+            else if (type == Sensor.TYPE_GYROSCOPE) {
+                gyroValues.add(Reading(it))
+                if (gyroValues.size == 50) {
+                    val acc = gyroValues.reduce { acc, reading -> acc + reading } / 50
+                    gyroValues.clear()
+                    gyroscopeView.text = "$acc"
+                    sensorDB.child(name)
+                        .child(UUID.randomUUID().toString())
+                        .setValue(acc)
+                        .addOnFailureListener(::logError)
+                }
+            }
+        }
+
     }
 
     // Good fit for Rx
@@ -67,15 +119,15 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
         sensorManager.unregisterListener(this, gyroscope)
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         if (measuring) {
             startMeasuring()
         }
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         stopMeasuring()
     }
 }
