@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.phoenixoverlord.pravega.cloud.firebase.extensions.Firebase
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
+import com.phoenixoverlord.pravega.ml.Transform
 import com.phoenixoverlord.pravega.toast
 import kotlinx.android.synthetic.main.activity_sensors.*
 import java.util.*
@@ -59,6 +60,7 @@ class SensorActivity : AppCompatActivity(), SensorEventListener {
         buttonStop.setOnClickListener { stopMeasuring() }
 
         initialiseSensors()
+        logDebug("SUM =" + Transform.arraySum(floatArrayOf(1.0f, 2.0f, 3.0f, 4.0f, 5.0f)))
     }
 
     private fun initialiseSensors() {

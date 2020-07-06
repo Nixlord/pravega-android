@@ -22,6 +22,19 @@ android {
 //        buildConfigField 'String', 'DEV_SERVER', "\"${InetAddress.localHost.hostAddress}\""
         buildConfigField 'String', 'DEV_SERVER', "\"192.168.0.146\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        externalNativeBuild {
+            cmake {
+                cppFlags "-std=c++17"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/cpp/CMakeLists.txt"
+            version "3.10.2"
+        }
     }
 
     buildTypes {
@@ -37,6 +50,7 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    ndkVersion '20.0.5594570'
 }
 
 
