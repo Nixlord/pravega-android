@@ -30,13 +30,17 @@ class MainActivity : AppCompatActivity() {
     private val model: MainViewModel by viewModels()
     // See why there are two okhttp, maybe one is from retrofit
     private val http = okhttp3.OkHttpClient()
+    private lateinit var notificationHelper: NotificationHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        notificationHelper = NotificationHelper(this)
+        notificationHelper.setUpNotificationChannels()
 
         buttonSensorActivity.setOnClickListener {
-            finishAndStart(SensorActivity::class.java)
+            notificationHelper.showNotification(true)
+//            finishAndStart(SensorActivity::class.java)
         }
 
         setupRecyclerView()

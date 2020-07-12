@@ -64,12 +64,12 @@ int threadedArraySum(const vector<T> &values) {
 
     repeat(group, groups) {
         repeat(i, nThread) {
-            threads[i] = thread([&](T &sum) {
+            threads[i] = std::move(thread([&](T &sum) {
                 sum = 0;
                 repeat(idx, batchSize) {
                     sum += values[idx];
                 }
-            }, std::ref(sums[group + i]));
+            }, std::ref(sums[group + i])));
         }
 
         for (auto &thread: threads) {
