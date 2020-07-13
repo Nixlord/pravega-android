@@ -45,6 +45,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
+    implementation "com.github.StephenVinouze:KontinuousSpeechRecognizer:1.1.0"
     // Understand transitive dependencies
 //    api('com.github.Nixlord:Pravega-android:0.1.11') {
 //        transitive(true)
