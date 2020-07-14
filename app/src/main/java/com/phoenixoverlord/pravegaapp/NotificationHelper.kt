@@ -35,6 +35,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.drawable.Icon
+import com.phoenixoverlord.pravegaapp.assistant.AssistantActivity
 import java.lang.System.currentTimeMillis
 
 class NotificationHelper(private val context: Context) {
@@ -101,7 +102,7 @@ class NotificationHelper(private val context: Context) {
         .apply {
           if (fromUser) {
             setAutoExpandBubble(true)
-            setSuppressNotification(true)
+//            setSuppressNotification(true)
           }
         }
         .setIntent(
@@ -114,7 +115,7 @@ class NotificationHelper(private val context: Context) {
     return PendingIntent.getActivity(
         context,
         requestCode,
-        Intent(context, SensorActivity::class.java),
+        Intent(context, AssistantActivity::class.java),
         PendingIntent.FLAG_UPDATE_CURRENT
     )
   }

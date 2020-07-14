@@ -3,11 +3,13 @@ package com.phoenixoverlord.pravegaapp
 import android.Manifest
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
+import android.speech.tts.TextToSpeech.QUEUE_ADD
 import android.speech.tts.TextToSpeech.QUEUE_FLUSH
 import android.speech.tts.Voice
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.github.stephenvinouze.core.interfaces.RecognitionCallback
@@ -30,28 +32,13 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import okhttp3.*
-import java.util.*
 
-/*
-"en-in-x-ahp-local",
-"en-in-x-cxx#female_1-local",
-"en-in-x-cxx#female_2-local",
-"en-in-x-cxx#female_3-local",
-"en-in-x-cxx#male_1-local",
-"en-in-x-cxx#male_2-local",
-"en-in-x-cxx#male_3-local",
-"en-in-x-cxx-local",
-"en-in-x-ena-local",
-"en-in-x-enc-local",
-"en-in-x-end-local",
-"en-in-x-ene-local",
- */
+
 
 class MainActivity : BaseActivity() {
 
-    private val pravega = PravegaService(PravegaConfig.DEV)
+    private val pravega = PravegaService(PravegaConfig.PROD)
     private lateinit var adapter: PravegaAdapter<Friend>
-    private val model: MainViewModel by viewModels()
     // See why there are two okhttp, maybe one is from retrofit
     private val http = okhttp3.OkHttpClient()
     private lateinit var notificationHelper: NotificationHelper
@@ -106,81 +93,41 @@ class MainActivity : BaseActivity() {
         notificationHelper = NotificationHelper(this)
         notificationHelper.setUpNotificationChannels()
 
-        recognitionManager.createRecognizer()
+//        recognitionManager.createRecognizer()
 
         textToSpeech = TextToSpeech(this, {
             loaded = true
-            logDebug("CURRENT ENGINE", textToSpeech.defaultEngine)
-            logDebug("ENGINES")
-            textToSpeech.engines.forEach { logDebug(it.toString()) }
-
-            val voices = textToSpeech.voices
-            logDebug("VOICES")
-            textToSpeech.voices
-                .filter { it.locale.toString() == "en_IN" && !it.isNetworkConnectionRequired }
-                .sortedBy { it.name }
-                .forEach { logDebug(it.name) }
-//            GOOD
-//            textToSpeech.voice = textToSpeech.voices.find { it.name == "en-in-x-cxx#female_1-local" }
-
-//            textToSpeech.setSpeechRate(0.8f)
-//            textToSpeech.setPitch()
+            textToSpeech.voice = textToSpeech.voices.find { it.name == "en-in-x-ahp-local" }
         }, "com.google.android.tts")
 
-        // selected -> "en-in-x-ahp-local",
-        val voices = arrayOf(
-            "en-in-x-ahp-local",
-            "en-in-x-cxx#female_1-local",
-            "en-in-x-cxx#female_2-local",
-            "en-in-x-cxx#female_3-local",
-            "en-in-x-cxx#male_1-local",
-            "en-in-x-cxx#male_2-local",
-            "en-in-x-cxx#male_3-local",
-            "en-in-x-cxx-local",
-            "en-in-x-ena-local",
-            "en-in-x-enc-local",
-            "en-in-x-end-local",
-            "en-in-x-ene-local"
-        )
-
-        var idx = 0;
-        var len = voices.size
+        DataStore.Command.observe(this, Observer { text ->
+            textToSpeech.apply {
+                speak(text, QUEUE_ADD, null, "TEXT")
+                playSilentUtterance(100, QUEUE_ADD, "SILENCE")
+            }
+        })
 
         withPermissions(Manifest.permission.RECORD_AUDIO)
             .execute {
-                recognitionManager.startRecognition()
+//                recognitionManager.startRecognition()
             }
 
         buttonSensorActivity.setOnClickListener {
-//            notificationHelper.showNotification(true)
-            if (loaded) {
-                textToSpeech.voice = textToSpeech.voices.find { it.name == voices[ idx ] }
-                idx = (idx + 1) % len
-                textToSpeech.speak("Sanu is an absolute dumbass", QUEUE_FLUSH, null, "ID");
-                toast(textToSpeech.voice.name)
-            }
+            notificationHelper.showNotification(true)
+
         }
 
-//        setupRecyclerView()
-//        testRemoteConfig()
-//        testingOkHttpWS()
-
         mainFab.setOnClickListener {
-            toast("Calling ${PravegaConfig.DEV}")
-//            ws.sendClose()
-            pravega.friendAPI.getAllFriends()
-                .onResult { friends, err ->
-                    when {
-                        err != null -> logError(err)
-                        else -> loadFriends(friends.values)
-                    }
-                }
+            if (loaded) {
+                DataStore.Command.value = "Hi. I'm Eeeevaah, your Myntra assistant. "
+                DataStore.Command.value = "How may I help you?"
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        recognitionManager.startRecognition()
+//        recognitionManager.startRecognition()
     }
 
     override fun onPause() {
@@ -259,33 +206,4 @@ class MainActivity : BaseActivity() {
             binder
         )
     }
-
-    // Ex: recyclerView.attach(context, Attachment<Friend>)
-    // use extension function, recyclerView.attach(Attachment<Friend>)
-//    interface Attachment<Model> {
-//        fun getListItemLayoutID()
-//        fun getLayoutManager(context: Context)
-//        fun onViewBound(activity: AppCompatActivity, view: View, model: Model)
-//    }
-//
-//    class FriendView: Attachment<Friend> {
-//        override fun getListItemLayoutID() {
-//            TODO("Not yet implemented")
-//        }
-//
-//        override fun getLayoutManager(context: Context) {
-//            TODO("Not yet implemented")
-//        }
-//
-//        override fun onViewBound(activity: AppCompatActivity, view: View, model: Friend) {
-//            view.apply {
-//                textView.text = model.name
-//                textView2.text = "Age: ${model.age}"
-//                button.setOnClickListener {
-//                    toast(model.toString())
-//                }
-//            }
-//        }
-//    }
-
 }
