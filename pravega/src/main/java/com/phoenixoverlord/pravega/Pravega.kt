@@ -1,6 +1,8 @@
 package com.phoenixoverlord.pravega
 
-data class Server(val API: String, val AI: String)
+import javax.inject.Inject
+
+data class Server @Inject constructor (val API: String, val AI: String)
 
 // Integrate with RemoteConfig later
 object Pravega {

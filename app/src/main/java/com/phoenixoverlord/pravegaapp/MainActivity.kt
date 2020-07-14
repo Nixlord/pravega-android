@@ -10,29 +10,56 @@ import com.phoenixoverlord.pravega.Pravega
 import com.phoenixoverlord.pravega.api.PravegaService
 import com.phoenixoverlord.pravega.api.core.country.Country
 import com.phoenixoverlord.pravega.cloud.firebase.remoteConfig
+import com.phoenixoverlord.pravega.di.DaggerPravegaComponent
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
+import com.phoenixoverlord.pravega.framework.PravegaActivity
 import com.phoenixoverlord.pravega.toast
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_item.view.*
 import java.io.IOException
+
 //import javax.websocket.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : PravegaActivity() {
 
-    val pravega = PravegaService(Pravega.DEV)
+    //val pravega = PravegaService(Pravega.DEV)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
         //toast("Hello World")
         Toast.makeText(this, "Welcome", Toast.LENGTH_SHORT).show()
 
         //addTestDataToRecyclerView()
-        addCountryDataToRecyclerView()
-
+        //addCountryDataToRecyclerView()
+        val binder: ((View, Country) -> Unit) = { view, item ->
+            view.apply {
+                textView.text = item.name
+                textView2.text = item.capital
+                button.setOnClickListener {
+                    if(textView3.visibility == View.VISIBLE)
+                        textView3.visibility = View.GONE
+                    else {
+                        textView3.visibility = View.VISIBLE
+                        textView3.text = item.region
+                    }
+                }
+            }
+        }
+        val countryData: ArrayList<Country>? = countryData()
+        countryData?.let {
+            recyclerview.attach(
+                list = countryData,
+                layout = R.layout.list_item,
+                layoutManager = LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false),
+                binder = binder
+            )
+        }
+        
         remoteConfig(mapOf(
             "predictor" to "https://pravegapredictor.herokuapp.com/",
             "backend" to "https://pravegacore.herokuapp.com/"

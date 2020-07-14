@@ -48,11 +48,13 @@ When using fragments, inject dagger in fragments onAttach() before or after supe
 Apart form @Inject, there is another way to tell dagger how to provide an instance of a class - information inside dagger modules.
 In Dagger modules, we can define dependencies with @Provides annotation.
 
+@Provides methods cannot be private
+
 The @modules attribute in the @Component annotation tells dagger what modules to include when building a graph.
 
 Add scope annotation in classes when using constructor injections (@Inject) and add them in @Provides methods when using Dagger Modules.
 
-Read from subcomponenets.
+Read from subcomponenets.ri
 
 
 
