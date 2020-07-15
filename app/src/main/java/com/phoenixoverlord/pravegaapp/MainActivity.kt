@@ -1,12 +1,15 @@
 package com.phoenixoverlord.pravegaapp
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.speech.tts.TextToSpeech.QUEUE_ADD
 import android.speech.tts.TextToSpeech.QUEUE_FLUSH
 import android.speech.tts.Voice
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -27,6 +30,8 @@ import com.phoenixoverlord.pravega.framework.extensions.finishAndStart
 import com.phoenixoverlord.pravega.mechanisms.PermissionsModule
 import com.phoenixoverlord.pravega.toast
 import com.phoenixoverlord.pravega.views.recyclerview.PravegaAdapter
+import com.phoenixoverlord.pravegaapp.rockPaperScissor.RockPaperScissorActivity
+import com.phoenixoverlord.pravegaapp.rockPaperScissor.RockPaperScissorActivity.Companion.WINNER
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_main.*
@@ -117,11 +122,24 @@ class MainActivity : BaseActivity() {
 
         }
 
+        rockPaperScissorButton.setOnClickListener {
+            val intent = Intent(this, RockPaperScissorActivity::class.java)
+            startActivityForResult(intent, 1)
+        }
+
         mainFab.setOnClickListener {
             if (loaded) {
                 DataStore.Command.value = "Hi. I'm Eeeevaah, your Myntra assistant. "
                 DataStore.Command.value = "How may I help you?"
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
+            val winner = data.getStringExtra(WINNER)
+            Toast.makeText(this, winner, Toast.LENGTH_SHORT).show()
         }
     }
 

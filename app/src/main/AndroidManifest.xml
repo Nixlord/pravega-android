@@ -34,6 +34,8 @@
                 android:label="Inspirational Quote"
                 android:resizeableActivity="true"
                 android:theme="@style/AppTheme.NoActionBar"></activity>
+
+        <activity android:name=".rockPaperScissor.RockPaperScissorActivity"/>
     </application>
 
 </manifest>

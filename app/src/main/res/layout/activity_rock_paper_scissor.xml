@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="16dp">
+
+    <TextView
+            android:id="@+id/roundNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/light_red_color"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="ROUND 1" />
+
+    <TextView
+            android:id="@+id/userHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="YOU"
+            android:textColor="@color/black"
+            android:layout_marginStart="16dp"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roundNumber" />
+
+
+    <TextView
+            android:id="@+id/computerHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="COMPUTER"
+            android:textColor="@color/black"
+            android:layout_marginEnd="16dp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roundNumber" />
+
+    <TextView
+            android:id="@+id/userScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score : 0"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:layout_marginStart="16dp"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userHeader" />
+
+    <TextView
+            android:id="@+id/computerScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Score:0"
+            android:layout_marginEnd="16dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/computerHeader" />
+
+    <ImageView
+            android:id="@+id/userSelectedOption"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userScore" />
+
+    <ImageView
+            android:id="@+id/computerSelectedOption"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/computerScore" />
+
+    <ImageView
+            android:id="@+id/finalResultsImage"
+            android:layout_width="0dp"
+            android:layout_height="300dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/placeholder"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/userSelectedOption" />
+
+    <TextView
+            android:id="@+id/finalResults"
+            android:layout_width="0dp"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="Winnner Declared here"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/finalResultsImage" />
+
+    <ImageView
+            android:id="@+id/userRock"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/black_border"
+            android:src="@drawable/rock"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/userPaper"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+            android:id="@+id/userPaper"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/paper"
+            android:background="@drawable/black_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/userScissor"
+            app:layout_constraintStart_toEndOf="@id/userRock" />
+
+    <ImageView
+            android:id="@+id/userScissor"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/scissor"
+            android:background="@drawable/black_border"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userPaper" />
+    <!--<TextView
+            android:id="@+id/computerScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/roundNumber"
+            app:layout_constraintBottom_toTopOf="@id/computerRock"
+            tools:text="Computer Score: 0" />
+
+    <ImageView
+            android:id="@+id/computerRock"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:src="@drawable/rock"
+            app:layout_constraintEnd_toStartOf="@id/computerPaper"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/computerScore" />
+
+    <ImageView
+            android:id="@+id/computerPaper"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/paper"
+            app:layout_constraintEnd_toStartOf="@id/computerScissor"
+            app:layout_constraintStart_toEndOf="@id/computerRock"
+            app:layout_constraintTop_toTopOf="@id/computerRock" />
+
+    <ImageView
+            android:id="@+id/computerScissor"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/scissors"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/computerPaper"
+            app:layout_constraintTop_toTopOf="@id/computerRock" />
+
+    <View
+            android:id="@+id/computerOptionSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="16dp"
+            android:background="#546E7A"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/computerRock" />
+
+    <ImageView
+            android:id="@+id/computerSelectedOption"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="16dp"
+            android:src="@color/grey"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/computerOptionSeparator" />
+
+    <TextView
+            android:id="@+id/finalResults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="Winner name comes here."
+            app:layout_constraintBottom_toBottomOf="@id/computerSelectedOption"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/userSelectedOption" />
+
+    <ImageView
+            android:id="@+id/userSelectedOption"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginBottom="16dp"
+            android:src="@color/grey"
+            app:layout_constraintBottom_toTopOf="@id/userOptionSeparator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+            android:id="@+id/userOptionSeparator"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginBottom="16dp"
+            android:background="#546E7A"
+            app:layout_constraintBottom_toTopOf="@id/userScore"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+            android:id="@+id/userScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/userRock"
+            tools:text="Your scroe: 0" />
+
+    <ImageView
+            android:id="@+id/userRock"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/rock"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/userPaper"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+            android:id="@+id/userPaper"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/paper"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/userScissor"
+            app:layout_constraintStart_toEndOf="@id/userRock" />
+
+    <ImageView
+            android:id="@+id/userScissor"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/scissors"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/userPaper" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
