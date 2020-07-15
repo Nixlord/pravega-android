@@ -52,6 +52,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "766069098100-sh33l3gnsnn71dvs8211kfav562224ah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phoenixoverlord.pravegaapp",
+            "certificate_hash": "d02ca84accef939b633e4bb4df8b81d435806072"
+          }
+        },
+        {
+          "client_id": "766069098100-g0v4qf4j7elceb999vrp6sd7ku1egsrb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.phoenixoverlord.pravegaapp",
+            "certificate_hash": "7ef61be940d29436b4af7a73a04627a478659889"
+          }
+        },
+        {
           "client_id": "766069098100-tskr255pneejkqj5bhfch3hr0ra9j5ik.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
