@@ -28,6 +28,7 @@
             android:id="@+id/friend_avatar"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:src="@drawable/myntra"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             android:cropToPadding="true">
