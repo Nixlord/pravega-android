@@ -5,13 +5,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import com.phoenixoverlord.pravega.api.PravegaService
-import com.phoenixoverlord.pravega.api.core.friend.Friend
-import com.phoenixoverlord.pravega.config.PravegaConfig
 import com.phoenixoverlord.pravega.framework.BaseActivity
 import com.phoenixoverlord.pravega.framework.extensions.finishAndStart
 import com.phoenixoverlord.pravega.toast
-import com.phoenixoverlord.pravega.views.recyclerview.PravegaAdapter
 import com.phoenixoverlord.pravegaapp.mechanisms.*
 import com.phoenixoverlord.pravegaapp.mechanisms.WebSocket
 import com.phoenixoverlord.pravegaapp.rockPaperScissor.RockPaperScissorActivity
@@ -36,7 +32,7 @@ class MainActivity : BaseActivity() {
         setContentView(R.layout.activity_main)
 
         ws.onMessage(this) {
-            EvaVoice.speak(it.fullfillment)
+            EvaVoice.speak(it.fulfillment)
         }
 
         notificationHelper = NotificationHelper(this)

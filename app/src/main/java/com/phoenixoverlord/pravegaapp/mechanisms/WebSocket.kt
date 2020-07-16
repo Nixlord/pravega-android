@@ -43,10 +43,12 @@ open class DefaultWSListener(private val changeStatus: (active: Boolean) -> Unit
 
 //  {"text": "\"\"", "intent": "fallback", "intent_confidence": 1.0, "fullfillment": "I didn't get that. Can you word it differently?"}
 data class DialogFlow(
+    val from: String = "",
     val text: String = "",
     val intent: String = "fallback",
     val intentConfidence: Float = 1.0f,
-    val fullfillment: String = ""
+    val fulfillment: String = "",
+    val items: Map<String, String>?
 )
 
 // All these components need one reference of context. Mechanism for that required.
