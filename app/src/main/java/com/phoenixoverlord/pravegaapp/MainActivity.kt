@@ -5,14 +5,11 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
-import android.speech.tts.TextToSpeech
-import android.speech.tts.TextToSpeech.QUEUE_ADD
-import androidx.lifecycle.Observer
 import com.phoenixoverlord.pravega.api.PravegaService
 import com.phoenixoverlord.pravega.api.core.friend.Friend
 import com.phoenixoverlord.pravega.config.PravegaConfig
-import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.framework.BaseActivity
+import com.phoenixoverlord.pravega.framework.extensions.finishAndStart
 import com.phoenixoverlord.pravega.toast
 import com.phoenixoverlord.pravega.views.recyclerview.PravegaAdapter
 import com.phoenixoverlord.pravegaapp.mechanisms.*
@@ -22,17 +19,11 @@ import com.phoenixoverlord.pravegaapp.rockPaperScissor.RockPaperScissorActivity.
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.list_item.view.*
 import okhttp3.*
-import okio.ByteString
 import java.io.File
-import java.io.IOException
 
 
 class MainActivity : BaseActivity() {
-    private val pravega = PravegaService(PravegaConfig.PROD)
-    private lateinit var adapter: PravegaAdapter<Friend>
-    // See why there are two okhttp, maybe one is from retrofit
     private val http = OkHttpClient()
     private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     private lateinit var notificationHelper: NotificationHelper
@@ -57,7 +48,7 @@ class MainActivity : BaseActivity() {
             VoiceRecorder.start(file!!)
             Handler().postDelayed({
                 VoiceRecorder.stop()
-                predictor.getDialogFlowResponse(file!!) {
+                predictor.recogniseAudio(file!!) {
                     withPermissions(Manifest.permission.INTERNET)
                         .execute {
                             it?.let{ ws.sendMessage(it.content) }
@@ -73,7 +64,7 @@ class MainActivity : BaseActivity() {
         }
 
         mainFab.setOnClickListener {
-            EvaVoice.speak("Hello Shibasis, how may I help you?")
+            finishAndStart(MyntraActivity::class.java)
         }
     }
 

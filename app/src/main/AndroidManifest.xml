@@ -20,20 +20,24 @@
                 android:theme="@style/AppTheme.NoActionBar">
 
         </activity>
+        <activity
+                android:name=".MyntraActivity"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".SensorActivity"
-                android:allowEmbedded="true"
-                android:documentLaunchMode="always"
-                android:label="Inspirational Quote"
-                android:resizeableActivity="true"
-                android:theme="@style/AppTheme.NoActionBar"></activity>
+<!--        <activity-->
+<!--                android:name=".SensorActivity"-->
+<!--                android:allowEmbedded="true"-->
+<!--                android:documentLaunchMode="always"-->
+<!--                android:label="Inspirational Quote"-->
+<!--                android:resizeableActivity="true"-->
+<!--                android:theme="@style/AppTheme.NoActionBar"></activity>-->
 
         <activity android:name=".rockPaperScissor.RockPaperScissorActivity"/>
     </application>

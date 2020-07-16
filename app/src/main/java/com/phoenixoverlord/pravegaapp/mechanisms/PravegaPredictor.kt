@@ -23,7 +23,7 @@ class PravegaPredictor(private val http: OkHttpClient, moshi: Moshi) {
     }
 
     // Retrofit this later
-    fun getDialogFlowResponse(audio: File, onResponse: (recognition: AudioRecognition?) -> Unit) {
+    fun recogniseAudio(audio: File, onResponse: (recognition: AudioRecognition?) -> Unit) {
         val body = MultipartBody.Builder()
             .setType(MultipartBody.FORM)
             .addFormDataPart("file", audio.name, audio.asRequestBody("audio/3gp".toMediaType()))

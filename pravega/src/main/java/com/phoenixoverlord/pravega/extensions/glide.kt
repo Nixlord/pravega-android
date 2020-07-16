@@ -6,6 +6,7 @@ import androidx.annotation.DrawableRes
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
@@ -38,7 +39,13 @@ fun BaseActivity.loadImage(imageView: ImageView, imageFile : File) : ImageView {
 }
 
 fun BaseActivity.loadImage(imageView: ImageView, @DrawableRes drawableID : Int) : ImageView {
-    return Glide.with(this).load(drawableID).into(imageView).view
+    return Glide.with(this)
+        .load(drawableID)
+        .apply(RequestOptions()
+            .fitCenter()
+            .format(DecodeFormat.PREFER_ARGB_8888)
+            .override(Target.SIZE_ORIGINAL))
+        .into(imageView).view
 }
 
 fun BaseActivity.downloadImage(imageName: String, onSuccess : (file : File) -> Unit) {
