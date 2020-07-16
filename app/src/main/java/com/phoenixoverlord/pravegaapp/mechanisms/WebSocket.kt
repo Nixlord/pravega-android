@@ -48,7 +48,7 @@ data class DialogFlow(
     val intent: String = "fallback",
     val intentConfidence: Float = 1.0f,
     val fulfillment: String = "",
-    val items: Map<String, String>?
+    val items: Map<String, String>? = null
 )
 
 // All these components need one reference of context. Mechanism for that required.
