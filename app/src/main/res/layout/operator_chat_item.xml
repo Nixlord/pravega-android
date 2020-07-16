@@ -2,37 +2,36 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:orientation="vertical"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginBottom="15dp">
+
     <TextView
             android:id="@+id/message"
-            android:background="@drawable/operator_chat_bubble"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:background="@drawable/operator_chat_bubble"
             android:padding="16dp"
-            android:textSize="16sp"
             android:textColor="@color/white"
-            tools:text="Hi You"
+            android:textSize="16sp"
             app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/friend_avatar"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="12dp"/>
+            tools:text="Hi You, \nHow can I help you in shopping?" />
 
     <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/friend_avatar"
             android:layout_width="48dp"
             android:layout_height="48dp"
+            android:cropToPadding="true"
             android:src="@drawable/myntra"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:cropToPadding="true">
-    </de.hdodenhof.circleimageview.CircleImageView>
+            app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
