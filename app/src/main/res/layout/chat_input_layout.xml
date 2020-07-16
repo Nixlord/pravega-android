@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="8dp"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/messageInputContainer"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_margin="6dp"
+            android:layout_marginEnd="12dp"
+            android:background="@drawable/input_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@+id/voiceRecordingOrSend">
+
+        <ImageButton
+                android:id="@+id/addEmoticon"
+                android:layout_width="21dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:background="@null"
+                android:tint="#88898b"
+                android:src="@drawable/ic_insert_emoticon_black_24dp"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+                android:id="@+id/messageInput"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="12dp"
+                android:background="@android:color/transparent"
+                android:hint="Type a message"
+                android:text="@={viewModel.messageInputText}"
+                app:layout_constraintStart_toEndOf="@id/addEmoticon"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/voiceRecordingOrSend"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:fabCustomSize="48dp"
+            android:layout_margin="6dp"
+            app:backgroundTint="#19887a"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/messageInputContainer"
+            app:tint="@color/white"
+            android:src="@drawable/ic_send_black_24dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
