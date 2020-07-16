@@ -20,7 +20,7 @@ android {
 
 //        This works but returns ethernet address. We need the wifi address
 //        buildConfigField 'String', 'DEV_SERVER', "\"${InetAddress.localHost.hostAddress}\""
-        buildConfigField 'String', 'DEV_SERVER', "\"192.168.0.146\""
+        buildConfigField 'String', 'DEV_SERVER', "\"192.168.0.119\""
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         externalNativeBuild {
