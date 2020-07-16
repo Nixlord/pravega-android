@@ -15,7 +15,7 @@
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="15sp"
             android:padding="15dp"
             android:background="@drawable/user_chat_bubble"
