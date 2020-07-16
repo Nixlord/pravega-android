@@ -47,10 +47,17 @@ class MainActivity : BaseActivity() {
                 predictor.recogniseAudio(file!!) {
                     withPermissions(Manifest.permission.INTERNET)
                         .execute {
-                            it?.let{ ws.sendMessage(it.content) }
+                            it?.let{
+                                ws.sendMessage(
+                                    DialogFlowRequest(
+                                        Agent.PersonalAssistant,
+                                        it.content
+                                    )
+                                )
+                            }
                         }
                 }
-            }, 7000)
+            }, 6000)
 
         }
 

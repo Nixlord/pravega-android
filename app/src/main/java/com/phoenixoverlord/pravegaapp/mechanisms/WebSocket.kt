@@ -4,13 +4,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.phoenixoverlord.pravega.config.PravegaConfig
-import com.phoenixoverlord.pravega.config.Server
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.squareup.moshi.Moshi
 import okhttp3.*
 import okhttp3.WebSocket
-import okio.ByteString
 
 open class DefaultWSListener(private val changeStatus: (active: Boolean) -> Unit): WebSocketListener() {
     fun log(fnName: String, active: Boolean) {
@@ -41,14 +39,25 @@ open class DefaultWSListener(private val changeStatus: (active: Boolean) -> Unit
     }
 }
 
+object Agent {
+    val PersonalAssistant = "PERSONAL_ASSISTANT"
+    val CustomerService = "CUSTOMER_SERVICE"
+}
+
+
 //  {"text": "\"\"", "intent": "fallback", "intent_confidence": 1.0, "fullfillment": "I didn't get that. Can you word it differently?"}
-data class DialogFlow(
+data class DialogFlowResponse(
     val from: String = "",
     val text: String = "",
     val intent: String = "fallback",
     val intentConfidence: Float = 1.0f,
     val fulfillment: String = "",
     val items: Map<String, String>? = null
+)
+
+data class DialogFlowRequest(
+    val to: String,
+    val text: String = ""
 )
 
 // All these components need one reference of context. Mechanism for that required.
@@ -61,9 +70,10 @@ class WebSocket(
 ) {
 
     private var webSocket: WebSocket
-    private val data: MutableLiveData<DialogFlow> = MutableLiveData(DialogFlow())
+    private val data: MutableLiveData<DialogFlowResponse> = MutableLiveData(DialogFlowResponse())
     private var isActive = false
-    private val adapter = moshi.adapter(DialogFlow::class.java)
+    private val responseAdapter = moshi.adapter(DialogFlowResponse::class.java)
+    private val requestAdapter = moshi.adapter(DialogFlowRequest::class.java)
 
     private fun setIsActive(active: Boolean) {
         isActive = active
@@ -75,17 +85,17 @@ class WebSocket(
             override fun onMessage(webSocket: WebSocket, text: String) {
                 super.onMessage(webSocket, text)
                 logDebug("OkHttpOnMessage", text)
-                val dialogFlow = adapter.fromJson(text)
+                val dialogFlow = responseAdapter.fromJson(text)
                 data.postValue(dialogFlow)
             }
         })
     }
 
-    fun sendMessage(message: String) {
-        webSocket.send(message)
+    fun sendMessage(dialogFlowRequest: DialogFlowRequest) {
+        webSocket.send(requestAdapter.toJson(dialogFlowRequest))
     }
 
-    fun onMessage(owner: LifecycleOwner, onMessage: (message: DialogFlow) -> Unit) {
+    fun onMessage(owner: LifecycleOwner, onMessage: (message: DialogFlowResponse) -> Unit) {
         data.observe(owner, Observer(onMessage))
     }
 
