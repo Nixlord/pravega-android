@@ -69,11 +69,15 @@ class MainActivity : BaseActivity() {
     fun getImage(result: Result) = when(result) {
         Result("black", "men", "Shirts") -> R.drawable.black_shirt_list_page
         Result("blue", "women", "Jeans") -> R.drawable.blue_jeans_list_page
+        Result("black", "men", "Shoes") -> R.drawable.black_formal_shoes
+        Result("red", "women", "Ethnic Dress") -> R.drawable.red_ethnic_dress
         else -> null
     }
 
     fun loadImage(@DrawableRes id: Int?) {
-        id?.apply { loadImage(homeImageView, this) }
+        id?.apply {
+            loadImage(homeImageView, this)
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,6 +97,7 @@ class MainActivity : BaseActivity() {
                 }, 200)
                 return@onMessage
             }
+
             if (it.text.equals("I NEED HELP", ignoreCase = true)) {
                 EvaVoice.speak("I'll answer all your queries.")
                 Handler().postDelayed({
@@ -101,6 +106,7 @@ class MainActivity : BaseActivity() {
                 assistant?.dismiss()
                 return@onMessage
             }
+
             if (it.text.equals("LET'S PLAY", ignoreCase = true)) {
                 gameScenario()
                 assistant?.dismiss()
@@ -116,7 +122,7 @@ class MainActivity : BaseActivity() {
             it.items?.let {
                 runOnUiThread {
                     it.apply {
-                        logDebug("$colour, $gender, $item")
+                        toast("Colour: $colour, Gender: $gender, Item: $item")
                         if (isValid()) {
                             assistant?.dismiss()
                             Handler().postDelayed({
@@ -175,7 +181,6 @@ class MainActivity : BaseActivity() {
                     }
             }, 1000
         )
-
     }
 
     override fun onPause() {

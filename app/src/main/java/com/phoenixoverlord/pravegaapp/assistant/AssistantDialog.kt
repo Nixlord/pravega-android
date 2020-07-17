@@ -29,6 +29,7 @@ class AssistantDialog  : DialogFragment() {
             }
             actionTalkWithEva.setOnClickListener {
                 DataStore.Command.postValue(Action.EVA)
+                (activity as BaseActivity).toast("Listening now")
             }
         }
     }
