@@ -6,15 +6,9 @@
         android:layout_height="match_parent"
         tools:context=".assistant.AssistantActivity">
 
-    <Button
-            android:id="@+id/buttonSendCommand"
-            android:layout_width="wrap_content"
+    <com.phoenixoverlord.pravega.views.recyclerview.PravegaRecyclerView
+            android:id="@+id/assistantActions"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="32dp"
-            android:text="Send Command"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

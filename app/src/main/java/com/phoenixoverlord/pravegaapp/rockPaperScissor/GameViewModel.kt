@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.phoenixoverlord.pravegaapp.mechanisms.EvaVoice
 import java.util.*
 
 class GameViewModel : ViewModel() {
@@ -54,7 +55,6 @@ class GameViewModel : ViewModel() {
 
         val computerSelection = getRandomComputerSelection()
         _computerImage.value = computerSelection
-        Log.e("Diksha", computerImage.value.toString())
         checkResults(userSelection, computerSelection)
 
     }
@@ -76,36 +76,36 @@ class GameViewModel : ViewModel() {
             if(computerSelection == Selection.PAPER) {
                 localComputerScore += 1
                 _computerScore.value = localComputerScore
-                _winnerName.value = "COMPUTER won"
+                _winnerName.value = "Eva wins"
                 _winnerImage.value = "Paper"
             } else if (computerSelection == Selection.SCISSOR) {
                 localUserScore += 1
                 _userScore.value = localUserScore
-                _winnerName.value = "USER won"
+                _winnerName.value = "You win"
                 _winnerImage.value = "Rock"
             }
         } else if (userSelection == Selection.PAPER) { //paper wins from rock, loose from scissor
             if (computerSelection == Selection.SCISSOR) {
                 localComputerScore += 1
                 _computerScore.value = localComputerScore
-                _winnerName.value = "COMPUTER won"
+                _winnerName.value = "Eva wins"
                 _winnerImage.value = "Scissor"
             } else if (computerSelection == Selection.ROCK) {
                 localUserScore += 1
                 _userScore.value = localUserScore
-                _winnerName.value = "USER won"
+                _winnerName.value = "You win"
                 _winnerImage.value = "Paper"
             }
         } else if (userSelection == Selection.SCISSOR) { //scissor wins from paper, loose from rock
             if (computerSelection == Selection.ROCK) {
                 localComputerScore += 1
                 _computerScore.value = localComputerScore
-                _winnerName.value = "COMPUTER won"
+                _winnerName.value = "Eva wins"
                 _winnerImage.value = "Rock"
             } else if (computerSelection == Selection.PAPER) {
                 localUserScore += 1
                 _userScore.value = localUserScore
-                _winnerName.value = "USER won"
+                _winnerName.value = "You win"
                 _winnerImage.value = "Scissor"
             }
         }

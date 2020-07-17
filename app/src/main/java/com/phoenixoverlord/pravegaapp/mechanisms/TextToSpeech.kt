@@ -6,14 +6,16 @@ import com.phoenixoverlord.pravega.framework.BaseActivity
 import com.phoenixoverlord.pravega.toast
 
 object EvaVoice {
-    var textToSpeech: TextToSpeech? = null
+    private var textToSpeech: TextToSpeech? = null
 
     fun onStop() {
+        logDebug("STOPPING EVA", "")
         textToSpeech?.shutdown()
         textToSpeech = null
     }
 
     fun onStart(activity: BaseActivity) {
+        logDebug("STARTING EVA", "")
         textToSpeech = TextToSpeech(activity, {
             val voice = textToSpeech?.voices?.find { it.name == "en-in-x-ahp-local" }
             if (voice == null) {
@@ -22,6 +24,7 @@ object EvaVoice {
             else {
                 activity.toast("Found voice")
             }
+            textToSpeech?.voice = voice
         }, "com.google.android.tts")
     }
 

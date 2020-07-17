@@ -12,6 +12,11 @@ class ChatAdapter(
     private val data: MutableList<ChatItem>
 ) : RecyclerView.Adapter<ChatViewHolder<*>>() {
 
+    fun addChatItem(chatItem: ChatItem) {
+        data.add(0, chatItem)
+        notifyItemInserted(0)
+    }
+
     private lateinit var layoutInflater: LayoutInflater
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder<*> {
