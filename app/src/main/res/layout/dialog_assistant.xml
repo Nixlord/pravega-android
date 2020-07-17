@@ -9,7 +9,7 @@
     <Button
             android:id="@+id/actionTalkWithEva"
             style="?attr/materialButtonOutlinedStyle"
-            android:text="Talk with Eva"
+            android:text="Shop with Eva"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 

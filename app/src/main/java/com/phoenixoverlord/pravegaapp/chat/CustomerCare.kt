@@ -1,6 +1,7 @@
 package com.phoenixoverlord.pravegaapp.chat
 
 import android.os.Bundle
+import android.os.Handler
 import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +37,14 @@ class CustomerCare: BaseActivity() {
         setContentView(R.layout.fragment_cc)
         EvaVoice.onStart(this)
 
-        recyclerCustomerCare.adapter = ChatAdapter(arrayListOf())
+        recyclerCustomerCare.adapter = ChatAdapter(arrayListOf(
+            ChatItem("Hi, how may I help you?", ChatItem.TYPE_OPERATOR_MESSAGE)
+        ))
+
+        Handler().postDelayed({
+            EvaVoice.speak("Hi, how may I help you?")
+        }, 1000)
+
         recyclerCustomerCare.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, true)
 
         ws.onMessage(this) {

@@ -45,6 +45,15 @@ object Agent {
 }
 
 
+data class Result(
+    val colour: String = "",
+    val gender: String = "",
+    val item: String = ""
+) {
+    fun isValid(): Boolean {
+        return colour != "" && gender != "" && item != ""
+    }
+}
 //  {"text": "\"\"", "intent": "fallback", "intent_confidence": 1.0, "fullfillment": "I didn't get that. Can you word it differently?"}
 data class DialogFlowResponse(
     val from: String = "",
@@ -52,7 +61,7 @@ data class DialogFlowResponse(
     val intent: String = "fallback",
     val intentConfidence: Float = 1.0f,
     val fulfillment: String = "",
-    val items: Map<String, String>? = null
+    val items: Result? = null
 )
 
 data class DialogFlowRequest(

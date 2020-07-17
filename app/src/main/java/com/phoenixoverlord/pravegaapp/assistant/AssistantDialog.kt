@@ -29,7 +29,6 @@ class AssistantDialog  : DialogFragment() {
             }
             actionTalkWithEva.setOnClickListener {
                 DataStore.Command.postValue(Action.EVA)
-                dialog.dismiss()
             }
         }
     }

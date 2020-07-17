@@ -10,6 +10,7 @@ import java.util.*
 object VoiceRecorder {
     private var mediaRecorder: MediaRecorder? = null
 
+
     fun createFile(activity: BaseActivity): File {
         return File.createTempFile("sound_${Date().time}.3gp", null, activity.cacheDir)
     }
@@ -21,7 +22,7 @@ object VoiceRecorder {
             setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
             setOutputFile(file)
             setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-            setAudioSamplingRate(16000)
+            setAudioSamplingRate(32000)
 
             try {
                 prepare()
