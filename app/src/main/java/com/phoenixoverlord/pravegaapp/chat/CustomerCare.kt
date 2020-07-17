@@ -1,6 +1,7 @@
 package com.phoenixoverlord.pravegaapp.chat
 
 import android.os.Bundle
+import android.text.Editable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,7 +41,15 @@ class CustomerCare: BaseActivity() {
 
         ws.onMessage(this) {
             runOnUiThread {
-                (recyclerCustomerCare.adapter as ChatAdapter).addChatItem(ChatItem(it.fulfillment, ChatItem.TYPE_OPERATOR_MESSAGE))
+                if (it.fulfillment != "") {
+                    (recyclerCustomerCare.adapter as ChatAdapter).addChatItem(
+                        ChatItem(
+                            it.fulfillment,
+                            ChatItem.TYPE_OPERATOR_MESSAGE
+                        )
+                    )
+                }
+                recyclerCustomerCare.scrollToPosition(0)
                 EvaVoice.speak(it.fulfillment)
             }
         }
@@ -49,13 +58,20 @@ class CustomerCare: BaseActivity() {
             queryInput.text?.apply {
                 val content = toString()
                 (recyclerCustomerCare.adapter as ChatAdapter).addChatItem(ChatItem(content, ChatItem.TYPE_USER_MESSAGE))
+                recyclerCustomerCare.scrollToPosition(0)
+                queryInput.text?.clear()
                 ws.sendMessage(DialogFlowRequest(Agent.CustomerService, content))
             }
         }
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         EvaVoice.onStop()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        EvaVoice.onStart(this)
     }
 }

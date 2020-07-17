@@ -29,7 +29,7 @@
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:cropToPadding="true"
-            android:src="@drawable/myntra"
+            android:src="@drawable/eva_icon"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"></de.hdodenhof.circleimageview.CircleImageView>
 

@@ -98,24 +98,27 @@ class MainActivity : BaseActivity() {
                     .addOnSuccessListener {
                         val winner = it.getStringExtra(WINNER)
                         logDebug("WINNER", winner)
-                        when (winner) {
-                            "Eva wins" -> EvaVoice.speak("Haha, I am hard to defeat!!")
-                            "You win" -> EvaVoice.speak("Oops, You are good at this")
-                            "DRAW MATCH" -> EvaVoice.speak("Finally, a worthy opponent")
-                        }
+                        Handler().postDelayed({
+                            when (winner) {
+                                "Eva wins" -> EvaVoice.speak("Haha, I am hard to defeat!!")
+                                "You win" -> EvaVoice.speak("Oops, You are good at this")
+                                "DRAW MATCH" -> EvaVoice.speak("Finally, a worthy opponent")
+                            }
+                        }, 1000)
+
                     }
-            }, 400
+            }, 1000
         )
 
     }
 
-//    override fun onStop() {
-//        super.onStop()
-//        EvaVoice.onStop()
-//    }
-//
-//    override fun onStart() {
-//        super.onStart()
-//        EvaVoice.onStart(this)
-//    }
+    override fun onPause() {
+        super.onPause()
+        EvaVoice.onStop()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        EvaVoice.onStart(this)
+    }
 }
