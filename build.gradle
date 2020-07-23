@@ -19,7 +19,7 @@ buildscript {
         firebase_ui_version = "6.2.1"
         lifecycle_version = "2.2.0"
         arch_version = "2.1.0"
-        work_version = "2.3.4"
+        work_version = "2.4.0"
         dokka_version = "0.10.1"
         room_version = "2.2.5"
         dagger_version = "2.28"
