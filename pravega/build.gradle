@@ -129,7 +129,7 @@ dependencies {
     }
 
     // Retrofit and Moshi
-    api("com.squareup.okhttp3:okhttp:4.7.2") {
+    api("com.squareup.okhttp3:okhttp:4.8.1") {
         transitive = true
     }
     api('com.squareup.retrofit2:retrofit:2.8.1') {
