@@ -90,6 +90,21 @@ dependencies {
         transitive = true
     }
 
+    // CAMERAX
+    def camerax_version = "1.0.0-beta07"
+    // CameraX core library using camera2 implementation
+    api("androidx.camera:camera-camera2:$camerax_version") {
+        transitive = true
+    }
+    // CameraX Lifecycle Library
+    api("androidx.camera:camera-lifecycle:$camerax_version") {
+        transitive = true
+    }
+    // CameraX View class
+    api("androidx.camera:camera-view:1.0.0-alpha14") {
+        transitive = true
+    }
+
 
     // INEFFICIENT TRANSITIVE WORKING TODO
     // Firebase
@@ -109,6 +124,9 @@ dependencies {
         transitive = true
     }
     api("com.firebaseui:firebase-ui-auth:$firebase_ui_version") {
+        transitive = true
+    }
+    api("com.google.mlkit:image-labeling:16.2.0") {
         transitive = true
     }
 
