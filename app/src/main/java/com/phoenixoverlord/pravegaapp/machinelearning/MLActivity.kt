@@ -1,12 +1,17 @@
 package com.phoenixoverlord.pravegaapp.machinelearning
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import com.google.mlkit.vision.common.InputImage
+import com.google.mlkit.vision.label.ImageLabeler
+import com.google.mlkit.vision.label.ImageLabeling
+import com.google.mlkit.vision.label.defaults.ImageLabelerOptions
 import com.phoenixoverlord.pravega.extensions.logDebug
 import com.phoenixoverlord.pravega.extensions.logError
 import com.phoenixoverlord.pravega.framework.BaseActivity
@@ -27,6 +32,28 @@ class MLActivity : BaseActivity() {
     private var imageCapture: ImageCapture? = null
     private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
+
+    private class LabellingAnalyser: ImageAnalysis.Analyzer {
+        @SuppressLint("UnsafeExperimentalUsageError")
+        override fun analyze(image: ImageProxy) {
+            image.image?.apply {
+                val inputImage =
+                    InputImage.fromMediaImage(this, image.imageInfo.rotationDegrees)
+
+                val options = ImageLabelerOptions.Builder().setConfidenceThreshold(0.7f).build()
+                val client = ImageLabeling.getClient(options)
+
+                client.process(inputImage)
+                    .addOnSuccessListener {
+                        it.forEach {
+                            logDebug("IMAGE_CONTENTS", "${it.text}, ${it.confidence}")
+                        }
+                        image.close()
+                    }
+                    .addOnFailureListener(::logError)
+            }
+        }
+    }
 
     private class LuminosityAnalyser(private val listener: LumaListener): ImageAnalysis.Analyzer {
         private fun ByteBuffer.toByteArray(): ByteArray {
@@ -102,9 +129,10 @@ class MLActivity : BaseActivity() {
             val imageAnalyser = ImageAnalysis.Builder()
                 .build()
                 .also {
-                    it.setAnalyzer(cameraExecutor, LuminosityAnalyser {
-                        logDebug(it.toString())
-                    })
+//                    it.setAnalyzer(cameraExecutor, LuminosityAnalyser {
+//                        logDebug(it.toString())
+//                    })
+                    it.setAnalyzer(cameraExecutor, LabellingAnalyser())
                 }
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
