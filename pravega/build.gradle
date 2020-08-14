@@ -111,7 +111,7 @@ dependencies {
     api('com.google.firebase:firebase-config:19.1.4') {
         transitive(true)
     }
-    api('com.google.firebase:firebase-core:17.4.3') {
+    api('com.google.firebase:firebase-core:17.5.0') {
         transitive = true
     }
     api("com.firebaseui:firebase-ui-database:$firebase_ui_version") {
