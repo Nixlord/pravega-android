@@ -108,7 +108,7 @@ dependencies {
 
     // INEFFICIENT TRANSITIVE WORKING TODO
     // Firebase
-    api('com.google.firebase:firebase-config:19.1.4') {
+    api('com.google.firebase:firebase-config:20.0.4') {
         transitive(true)
     }
     api('com.google.firebase:firebase-core:17.4.3') {
